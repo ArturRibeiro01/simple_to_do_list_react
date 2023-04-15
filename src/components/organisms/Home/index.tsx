@@ -1,3 +1,5 @@
+import Subtitle from '../../atoms/global/Subtitle'
+
 export default function HomeOrganism() {
-  return <div>HomeOrganism</div>
+  return <Subtitle status={'iniciado'} />
 }
