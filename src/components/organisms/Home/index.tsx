@@ -1,5 +1,5 @@
-import Subtitle from '../../atoms/global/Subtitle'
+import Template from '../../molecules/global/Template'
 
 export default function HomeOrganism() {
-  return <Subtitle status={'iniciado'} />
+  return <Template>Qualquer coisa por enquanto</Template>
 }
