@@ -16,4 +16,8 @@ export const globalStyles = globalCss({
     fontFamily: 'Montserrat , sans-serif',
     fontWeight: 400,
   },
+
+  button: {
+    cursor: 'pointer',
+  },
 })

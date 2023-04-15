@@ -7,9 +7,15 @@ interface TitleQtdProps {
 export default function Title({ quantity }: TitleQtdProps) {
   return (
     <TitleContainer>
-      <TitleContent>
-        Você tem<TitleQtd>{quantity || 0}</TitleQtd> tarefas Criadas{' '}
-      </TitleContent>
+      {quantity > 0 ? (
+        <TitleContent>
+          Você tem<TitleQtd>{quantity || 0}</TitleQtd> tarefas Criadas{' '}
+        </TitleContent>
+      ) : (
+        <TitleContent>
+          Você ainda<TitleQtd> não possui</TitleQtd> nenhuma tarefa
+        </TitleContent>
+      )}
     </TitleContainer>
   )
 }

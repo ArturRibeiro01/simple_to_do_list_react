@@ -1,5 +1,10 @@
-import Template from '../../molecules/global/Template'
+import Template from '../../atoms/global/Template'
+import Header from '../../molecules/Header'
 
 export default function HomeOrganism() {
-  return <Template>Qualquer coisa por enquanto</Template>
+  return (
+    <Template>
+      <Header />
+    </Template>
+  )
 }

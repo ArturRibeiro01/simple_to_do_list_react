@@ -11,6 +11,7 @@ export const TitleContainer = styled('h2', {
 export const TitleContent = styled(TitleContainer, {
   color: '$gray-800',
 })
+
 export const TitleQtd = styled(TitleContainer, {
   color: '$pink',
   padding: '0 8px',

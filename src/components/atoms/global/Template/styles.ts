@@ -6,8 +6,3 @@ export const TemplateContainer = styled('section', {
   backgroundColor: '$white',
   padding: 40,
 })
-export const Header = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
