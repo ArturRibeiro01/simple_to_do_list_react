@@ -1,6 +1,7 @@
 import { styled } from '@stitches/react'
 
 import * as Dialog from '@radix-ui/react-dialog'
+
 import { darken } from 'polished'
 
 export const DialogRoot = styled(Dialog.Root, {})
