@@ -1,10 +1,5 @@
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import { ReactNode, useCallback, useState } from 'react'
+import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios'
 
 interface Tasks {
@@ -28,10 +23,6 @@ export const TasksContext = createContext({} as TasksContextType)
 export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<Tasks[]>([])
 
-  useEffect(() => {
-    fetchTasks()
-  }, [])
-
   const fetchTasks = useCallback(async () => {
     const response = await api.get('/tasks', {
       params: {},
@@ -40,7 +31,12 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }, [])
 
   return (
-    <TasksContext.Provider value={{ tasks, fetchTasks }}>
+    <TasksContext.Provider
+      value={{
+        tasks,
+        fetchTasks,
+      }}
+    >
       {children}
     </TasksContext.Provider>
   )
