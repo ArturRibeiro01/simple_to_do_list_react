@@ -1,17 +1,12 @@
 import Template from '../../atoms/global/Template'
 import Header from '../../molecules/Header'
-import { TasksContext } from '../../../contexts/TaskContext'
-import { useContextSelector } from 'use-context-selector'
+import TaskList from '../../molecules/TaskList'
 
 export default function HomeOrganism() {
-  const tasks = useContextSelector(TasksContext, (context) => {
-    return context.tasks
-  })
-
   return (
     <Template>
       <Header />
-      <pre>{JSON.stringify(tasks)}</pre>
+      <TaskList />
     </Template>
   )
 }

@@ -1,7 +1,7 @@
 import { SubtitleText } from './styles'
 
 interface SubtitleProps {
-  status: 'iniciado' | 'Completo'
+  status: 'Tarefas Criadas' | 'Tarefas Completadas'
 }
 
 export default function Subtitle({ status }: SubtitleProps) {

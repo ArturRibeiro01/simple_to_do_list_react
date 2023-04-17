@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios'
 
@@ -6,7 +6,7 @@ interface Tasks {
   id: number
   content: string
   status: 'pending' | 'in_progress' | 'completed'
-  createdAt: string
+  createdAt?: string
 }
 
 interface TasksContextType {
@@ -29,6 +29,10 @@ export function TasksProvider({ children }: TasksProviderProps) {
     })
     setTasks(response.data)
   }, [])
+
+  useEffect(() => {
+    fetchTasks()
+  }, [fetchTasks])
 
   return (
     <TasksContext.Provider
