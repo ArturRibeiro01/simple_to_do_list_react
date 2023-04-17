@@ -7,6 +7,7 @@ export const ContainerCard = styled(Collapsible, {
   border: '1px solid',
   borderColor: '$purple',
   borderRadius: '8px',
+  position: 'relative',
 })
 
 export const CardHeader = styled('div', {
@@ -55,6 +56,8 @@ export const CardFooter = styled('p', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  position: 'relative',
+  bottom: 0,
 })
 
 export const BtnStatus = styled('button', {

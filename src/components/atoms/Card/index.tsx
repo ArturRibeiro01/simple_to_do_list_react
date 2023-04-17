@@ -9,6 +9,7 @@ import {
   ContainerCard,
 } from './styles'
 import { CaretDown, CaretUp, Check, PencilLine, Trash } from 'phosphor-react'
+import { dateFormatter } from '../../../utils/formatter'
 
 interface CardProps {
   createdDate: any
@@ -26,7 +27,9 @@ export default function Card({ createdDate, task, status }: CardProps) {
       onOpenChange={setOpen}
     >
       <CardHeader>
-        <span>{createdDate}</span>
+        {/* <span>{dateFormatter.format(createdDate)}</span> */}
+        <span>{dateFormatter.format(new Date(createdDate))}</span>
+
         <Collapsible.Trigger asChild>
           <button>
             {open ? <CaretUp size={20} /> : <CaretDown size={20} />}

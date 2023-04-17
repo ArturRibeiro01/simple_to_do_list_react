@@ -15,7 +15,9 @@ export default function TaskListTemplate() {
 
   const completedTasks = tasks.filter((task) => task.status === 'completed')
 
-  console.log('teste', pendindTasks)
+  console.log('Pendentes', pendindTasks)
+  console.log('Em andamento', inprogressTaks)
+  console.log('Completo', completedTasks)
 
   return (
     <TemplateContainer>
