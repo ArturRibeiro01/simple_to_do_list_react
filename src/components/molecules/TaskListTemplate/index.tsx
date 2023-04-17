@@ -2,6 +2,7 @@ import { useContextSelector } from 'use-context-selector'
 import { TemplateContainer } from './styles'
 import { TasksContext } from '../../../contexts/TaskContext'
 import TaskList from './TaskList'
+import Card from '../../atoms/Card'
 
 export default function TaskListTemplate() {
   const tasks = useContextSelector(TasksContext, (context) => {
@@ -9,17 +10,25 @@ export default function TaskListTemplate() {
   })
 
   const pendindTasks = tasks.filter((task) => task.status === 'pending')
+
   const inprogressTaks = tasks.filter((task) => task.status === 'in_progress')
+
   const completedTasks = tasks.filter((task) => task.status === 'completed')
 
-  console.log('pendentes', pendindTasks)
-  console.log('em andamento', inprogressTaks)
-  console.log('Completadas', completedTasks)
+  console.log('teste', pendindTasks)
 
   return (
     <TemplateContainer>
-      <TaskList subtitleStatus={'Tarefas Pendentes'} />
-      {/* <CardTask>1</CardTask> */}
+      <TaskList subtitleStatus={'Tarefas Pendentes'}>
+        {pendindTasks.map((card) => (
+          <Card
+            key={card.id}
+            createdDate={card.createdAt}
+            task={card.content}
+            status={card.status}
+          />
+        ))}
+      </TaskList>
     </TemplateContainer>
   )
 }

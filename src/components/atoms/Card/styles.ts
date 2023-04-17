@@ -26,6 +26,7 @@ export const CardHeader = styled('div', {
 
     svg: {
       color: '$pink',
+      fontWeight: 'bold',
     },
   },
 })
@@ -54,4 +55,10 @@ export const CardFooter = styled('p', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+})
+
+export const BtnStatus = styled('button', {
+  border: 'none',
+  padding: '4px 8px',
+  borderRadius: '12px',
 })

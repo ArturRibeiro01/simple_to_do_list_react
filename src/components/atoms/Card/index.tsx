@@ -1,16 +1,23 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState } from 'react'
 import {
+  BtnStatus,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
   ContainerCard,
 } from './styles'
-import { CaretDown, CaretUp } from 'phosphor-react'
+import { CaretDown, CaretUp, Check, PencilLine, Trash } from 'phosphor-react'
 
-export default function Card() {
-  const [open, setOpen] = useState(false)
+interface CardProps {
+  createdDate: any
+  task: string
+  status: 'pending' | 'in_progress' | 'completed'
+}
+
+export default function Card({ createdDate, task, status }: CardProps) {
+  const [open, setOpen] = useState(true)
 
   return (
     <ContainerCard
@@ -19,7 +26,7 @@ export default function Card() {
       onOpenChange={setOpen}
     >
       <CardHeader>
-        <span>data e hora da task</span>
+        <span>{createdDate}</span>
         <Collapsible.Trigger asChild>
           <button>
             {open ? <CaretUp size={20} /> : <CaretDown size={20} />}
@@ -27,22 +34,19 @@ export default function Card() {
         </Collapsible.Trigger>
       </CardHeader>
 
-      <CardTitle>Hoje é um novo dia de um novo tempo que começou </CardTitle>
+      <CardTitle>{task}</CardTitle>
 
       <Collapsible.Content>
-        <CardContent>
-          Hoje é um novo dia de um novo tempo que começou Hoje a festa é sua,
-          hoje a festa é nossa é de quem quiser, quem vier
-        </CardContent>
+        <CardContent>{task}</CardContent>
       </Collapsible.Content>
 
       <CardFooter>
-        <div>btn Status</div>
-        <div>btn edit</div>
+        <BtnStatus>{status}</BtnStatus>
+        <PencilLine size={24} />
         <div>
           <div>btn andamento</div>
-          <div>btn finalizar</div>
-          <div>btn deletar</div>
+          <Check size={24} />
+          <Trash size={24} />
         </div>
       </CardFooter>
     </ContainerCard>
