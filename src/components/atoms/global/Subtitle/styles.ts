@@ -6,4 +6,5 @@ export const SubtitleText = styled('h4', {
   fontSize: 18,
   fontWeight: 400,
   marginBottom: '1.5rem',
+  display: 'block',
 })

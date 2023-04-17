@@ -1,12 +1,12 @@
 import Template from '../../atoms/global/Template'
 import Header from '../../molecules/Header'
-import TaskList from '../../molecules/TaskList'
+import TaskListTemplate from '../../molecules/TaskListTemplate'
 
 export default function HomeOrganism() {
   return (
     <Template>
       <Header />
-      <TaskList />
+      <TaskListTemplate />
     </Template>
   )
 }

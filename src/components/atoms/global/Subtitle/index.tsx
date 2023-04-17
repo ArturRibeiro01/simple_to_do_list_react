@@ -1,7 +1,8 @@
+import { ReactNode } from 'react'
 import { SubtitleText } from './styles'
 
 interface SubtitleProps {
-  status: 'Tarefas Criadas' | 'Tarefas Completadas'
+  status: ReactNode
 }
 
 export default function Subtitle({ status }: SubtitleProps) {
