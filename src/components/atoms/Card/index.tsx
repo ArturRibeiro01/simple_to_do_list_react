@@ -1,5 +1,6 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState } from 'react'
+import { dateFormatter } from '../../../utils/formatter'
 import {
   ActionContainer,
   BtnAction,
@@ -10,8 +11,14 @@ import {
   CardTitle,
   ContainerCard,
 } from './styles'
-import { CaretDown, CaretUp, Check, PencilLine, Trash } from 'phosphor-react'
-import { dateFormatter } from '../../../utils/formatter'
+import {
+  CaretDown,
+  CaretUp,
+  Check,
+  HourglassHigh,
+  PencilLine,
+  Trash,
+} from 'phosphor-react'
 
 interface CardProps {
   createdDate: any
@@ -56,14 +63,16 @@ export default function Card({ createdDate, task, status }: CardProps) {
 
         <ActionContainer>
           {status !== 'completed' ? (
-            <BtnAction type="check">
-              <Check size={24} />
-            </BtnAction>
-          ) : null}
+            <>
+              <BtnAction type="in_progress">
+                <HourglassHigh size={24} />
+              </BtnAction>
 
-          {/* <BtnAction type="check">
-            <Check size={24} />
-          </BtnAction> */}
+              <BtnAction type="check">
+                <Check size={24} />
+              </BtnAction>
+            </>
+          ) : null}
 
           <BtnAction type="trash">
             <Trash size={24} />

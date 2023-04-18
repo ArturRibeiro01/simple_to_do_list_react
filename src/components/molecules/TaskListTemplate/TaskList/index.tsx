@@ -1,5 +1,10 @@
 import { ReactNode } from 'react'
-import { ContainerTasks, SummaryContainerTasks, TasksQuantity } from './styles'
+import {
+  ContainerTasks,
+  Separator,
+  SummaryContainerTasks,
+  TasksQuantity,
+} from './styles'
 import Subtitle from '../../../atoms/global/Subtitle'
 
 interface TaskListProps {
@@ -25,6 +30,8 @@ export default function TaskList({
       </SummaryContainerTasks>
 
       <ContainerTasks>{children}</ContainerTasks>
+
+      <Separator />
     </>
   )
 }

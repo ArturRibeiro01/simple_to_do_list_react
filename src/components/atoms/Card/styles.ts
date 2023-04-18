@@ -5,7 +5,7 @@ export const ContainerCard = styled(Collapsible, {
   width: '350px',
   padding: '1rem',
   border: '1px solid',
-  borderColor: '$purple',
+
   borderRadius: '8px',
   position: 'relative',
 
@@ -13,14 +13,17 @@ export const ContainerCard = styled(Collapsible, {
     status: {
       pending: {
         backgroundColor: '$orange-light',
+        borderColor: '$orange',
       },
 
       in_progress: {
         backgroundColor: '$blue-light',
+        borderColor: '$blue',
       },
 
       completed: {
         backgroundColor: '$green-light',
+        borderColor: '$green',
       },
     },
   },
@@ -85,8 +88,9 @@ export const BtnStatus = styled('button', {
   variants: {
     status: {
       pending: {
-        backgroundColor: '$orange-light',
-        color: '$orange',
+        backgroundColor: '$orange',
+        color: '$white',
+        fontWeight: 'bold',
         border: '1px solid ',
         // '&:hover': {
         //   backgroundColor: 'darkviolet',
@@ -94,14 +98,16 @@ export const BtnStatus = styled('button', {
       },
 
       in_progress: {
-        backgroundColor: '$blue-light',
-        color: '$blue',
+        backgroundColor: '$blue',
+        color: '$white',
+        fontWeight: 'bold',
         border: '1px solid ',
       },
 
       completed: {
-        backgroundColor: '$green-light',
-        color: '$green',
+        backgroundColor: '$green',
+        color: '$white',
+        fontWeight: 'bold',
         border: '1px solid ',
       },
     },
@@ -120,10 +126,12 @@ export const BtnAction = styled('button', {
   variants: {
     type: {
       edit: {
-        color: '$blue',
+        color: '$purple',
       },
 
-      in_progress: {},
+      in_progress: {
+        color: '$blue',
+      },
 
       check: {
         color: '$green',
