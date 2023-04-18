@@ -18,7 +18,21 @@ interface CardProps {
 }
 
 export default function Card({ createdDate, task, status }: CardProps) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+
+  function TextStatusAdjust() {
+    switch (status) {
+      case 'pending':
+        return 'pendente'
+      case 'in_progress':
+        return 'Em Andamento'
+      case 'completed':
+        return 'Concluído'
+
+      default:
+        console.log(null)
+    }
+  }
 
   return (
     <ContainerCard
@@ -44,10 +58,10 @@ export default function Card({ createdDate, task, status }: CardProps) {
       </Collapsible.Content>
 
       <CardFooter>
-        <BtnStatus>{status}</BtnStatus>
+        <BtnStatus status={status}>{status}</BtnStatus>
         <PencilLine size={24} />
         <div>
-          <div>btn andamento</div>
+          {/* <div>btn andamento</div> */}
           <Check size={24} />
           <Trash size={24} />
         </div>

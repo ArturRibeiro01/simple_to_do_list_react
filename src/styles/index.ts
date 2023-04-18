@@ -20,20 +20,17 @@ export const {
 
       pink: '#F3477A',
       purple: '#884CB2',
-
       orange: '#F2994A',
+      'orange-light': '#fbe0c8',
       blue: '#56CCF2',
+      'blue-light': '#cceffb',
       red: '#EB5757',
+      'red-light': '#f9cccc',
       green: '#27AE60',
-
+      'green-light': '#b6eece',
       'gray-100': '#E0E0E0',
       'gray-300': '#BDBDBD',
       'gray-800': '#1D262C',
-
-      'orange-light': lighten(0.8, '#F2994A'),
-      'blue-light': lighten(0.8, '#56CCF2'),
-      'red-light': lighten(0.8, '#EB5757'),
-      'gray-light': lighten(0.8, '#27AE60'),
     },
 
     fontSizes: {

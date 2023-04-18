@@ -5,24 +5,17 @@ import TaskList from './TaskList'
 import Card from '../../atoms/Card'
 
 export default function TaskListTemplate() {
-  const tasks = useContextSelector(TasksContext, (context) => {
-    return context.tasks
+  const pendingTasks = useContextSelector(TasksContext, (context) => {
+    return context.pendindTasks
   })
-
-  const pendindTasks = tasks.filter((task) => task.status === 'pending')
-
-  const inprogressTaks = tasks.filter((task) => task.status === 'in_progress')
-
-  const completedTasks = tasks.filter((task) => task.status === 'completed')
-
-  console.log('Pendentes', pendindTasks)
-  console.log('Em andamento', inprogressTaks)
-  console.log('Completo', completedTasks)
 
   return (
     <TemplateContainer>
-      <TaskList subtitleStatus={'Tarefas Pendentes'}>
-        {pendindTasks.map((card) => (
+      <TaskList
+        subtitleStatus={'Tarefas Pendentes'}
+        quantitytasks={pendingTasks.length}
+      >
+        {pendingTasks.map((card: any) => (
           <Card
             key={card.id}
             createdDate={card.createdAt}

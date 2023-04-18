@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { ContainerTasks } from './styles'
+import { ContainerTasks, SummaryContainerTasks, TasksQuantity } from './styles'
 import Subtitle from '../../../atoms/global/Subtitle'
 
 interface TaskListProps {
@@ -8,13 +8,22 @@ interface TaskListProps {
     | 'Tarefas em andamento'
     | 'Tarefas concluídas'
     | 'tarefas Canceladas'
+  quantitytasks: number
   children: ReactNode
 }
 
-export default function TaskList({ subtitleStatus, children }: TaskListProps) {
+export default function TaskList({
+  subtitleStatus,
+  children,
+  quantitytasks,
+}: TaskListProps) {
   return (
     <>
-      <Subtitle status={subtitleStatus} />
+      <SummaryContainerTasks>
+        <Subtitle status={subtitleStatus} />
+        <TasksQuantity>{quantitytasks || 0}</TasksQuantity>
+      </SummaryContainerTasks>
+
       <ContainerTasks>{children}</ContainerTasks>
     </>
   )

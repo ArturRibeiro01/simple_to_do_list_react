@@ -1,5 +1,6 @@
 import { Collapsible } from '@radix-ui/react-collapsible'
 import { styled } from '@stitches/react'
+import { lighten } from 'polished'
 
 export const ContainerCard = styled(Collapsible, {
   width: '350px',
@@ -64,4 +65,29 @@ export const BtnStatus = styled('button', {
   border: 'none',
   padding: '4px 8px',
   borderRadius: '12px',
+
+  variants: {
+    status: {
+      pending: {
+        backgroundColor: '$orange-light',
+        color: '$orange',
+        // '&:hover': {
+        //   backgroundColor: 'darkviolet',
+        // },
+      },
+
+      in_progress: {
+        backgroundColor: '$blue-light',
+        color: '$blue',
+        // '&:hover': {
+        //   backgroundColor: 'lightgray',
+        // },
+      },
+
+      completed: {
+        backgroundColor: '$green-light',
+        color: '$green',
+      },
+    },
+  },
 })
