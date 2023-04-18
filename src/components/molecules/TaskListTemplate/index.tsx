@@ -8,12 +8,23 @@ export default function TaskListTemplate() {
   const pendingTasks = useContextSelector(TasksContext, (context) => {
     return context.pendindTasks
   })
+
   const currentTasks = useContextSelector(TasksContext, (context) => {
     return context.currentTasks
   })
+
   const completedTasks = useContextSelector(TasksContext, (context) => {
     return context.completedTasks
   })
+
+  const deleteTask = useContextSelector(TasksContext, (context) => {
+    return context.deleteTask
+  })
+
+  async function handleDeleteTask(data: any) {
+    const id = data
+    await deleteTask(id)
+  }
 
   return (
     <TemplateContainer>
@@ -24,9 +35,11 @@ export default function TaskListTemplate() {
         {pendingTasks.map((card: any) => (
           <Card
             key={card.id}
+            id={card.id}
             createdDate={card.createdAt}
             task={card.content}
             status={card.status}
+            deletetask={() => handleDeleteTask(card.id)}
           />
         ))}
       </TaskList>
@@ -37,9 +50,11 @@ export default function TaskListTemplate() {
       >
         {currentTasks.map((card: any) => (
           <Card
+            id={card.id}
             key={card.id}
             createdDate={card.createdAt}
             task={card.content}
+            deletetask={() => handleDeleteTask(card.id)}
             status={card.status}
           />
         ))}
@@ -51,10 +66,12 @@ export default function TaskListTemplate() {
       >
         {completedTasks.map((card: any) => (
           <Card
+            id={card.id}
             key={card.id}
             createdDate={card.createdAt}
             task={card.content}
             status={card.status}
+            deletetask={() => handleDeleteTask(card.id)}
           />
         ))}
       </TaskList>

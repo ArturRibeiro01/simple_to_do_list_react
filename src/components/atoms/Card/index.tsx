@@ -21,12 +21,19 @@ import {
 } from 'phosphor-react'
 
 interface CardProps {
+  id: number
   createdDate: any
   task: string
   status: 'pending' | 'in_progress' | 'completed'
+  deletetask: any
 }
 
-export default function Card({ createdDate, task, status }: CardProps) {
+export default function Card({
+  createdDate,
+  task,
+  status,
+  deletetask,
+}: CardProps) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -74,7 +81,7 @@ export default function Card({ createdDate, task, status }: CardProps) {
             </>
           ) : null}
 
-          <BtnAction type="trash">
+          <BtnAction type="trash" onClick={deletetask}>
             <Trash size={24} />
           </BtnAction>
         </ActionContainer>

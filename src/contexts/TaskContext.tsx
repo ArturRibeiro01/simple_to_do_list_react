@@ -9,12 +9,17 @@ interface Tasks {
   createdAt?: string
 }
 
+interface DeleteTask {
+  id: string
+}
+
 interface TasksContextType {
   tasks: Tasks[]
   fetchTasks: () => void
   pendindTasks: object[]
   currentTasks: object[]
   completedTasks: object[]
+  deleteTask: (data: DeleteTask) => Promise<void>
 }
 
 interface TasksProviderProps {
@@ -51,6 +56,13 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
+  const deleteTask = useCallback(async (data: DeleteTask) => {
+    const id = data
+
+    await api.delete(`tasks/${id}`)
+    fetchTasks()
+  }, [])
+
   useEffect(() => {
     fetchTasks()
   }, [fetchTasks])
@@ -63,6 +75,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         pendindTasks,
         currentTasks,
         completedTasks,
+        deleteTask,
       }}
     >
       {children}
