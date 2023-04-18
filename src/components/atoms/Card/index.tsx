@@ -20,20 +20,6 @@ interface CardProps {
 export default function Card({ createdDate, task, status }: CardProps) {
   const [open, setOpen] = useState(false)
 
-  function TextStatusAdjust() {
-    switch (status) {
-      case 'pending':
-        return 'pendente'
-      case 'in_progress':
-        return 'Em Andamento'
-      case 'completed':
-        return 'Concluído'
-
-      default:
-        console.log(null)
-    }
-  }
-
   return (
     <ContainerCard
       className="CollapsibleRoot"

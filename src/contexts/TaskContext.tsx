@@ -37,8 +37,8 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
-  const inprogressTaks = tasks.filter((task) => task.status === 'in_progress')
-  const completedTasks = tasks.filter((task) => task.status === 'completed')
+  // const inprogressTaks = tasks.filter((task) => task.status === 'in_progress')
+  // const completedTasks = tasks.filter((task) => task.status === 'completed')
 
   useEffect(() => {
     fetchTasks()

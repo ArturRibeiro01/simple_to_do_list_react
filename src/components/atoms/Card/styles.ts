@@ -1,6 +1,5 @@
 import { Collapsible } from '@radix-ui/react-collapsible'
 import { styled } from '@stitches/react'
-import { lighten } from 'polished'
 
 export const ContainerCard = styled(Collapsible, {
   width: '350px',

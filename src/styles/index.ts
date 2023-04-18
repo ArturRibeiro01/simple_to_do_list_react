@@ -1,5 +1,4 @@
 import { createStitches } from '@stitches/react'
-import { lighten } from 'polished'
 
 export const {
   config,
