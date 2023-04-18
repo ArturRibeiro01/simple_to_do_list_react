@@ -8,6 +8,22 @@ export const ContainerCard = styled(Collapsible, {
   borderColor: '$purple',
   borderRadius: '8px',
   position: 'relative',
+
+  variants: {
+    status: {
+      pending: {
+        backgroundColor: '$orange-light',
+      },
+
+      in_progress: {
+        backgroundColor: '$blue-light',
+      },
+
+      completed: {
+        backgroundColor: '$green-light',
+      },
+    },
+  },
 })
 
 export const CardHeader = styled('div', {
@@ -64,12 +80,14 @@ export const BtnStatus = styled('button', {
   border: 'none',
   padding: '4px 8px',
   borderRadius: '12px',
+  cursor: 'not-allowed',
 
   variants: {
     status: {
       pending: {
         backgroundColor: '$orange-light',
         color: '$orange',
+        border: '1px solid ',
         // '&:hover': {
         //   backgroundColor: 'darkviolet',
         // },
@@ -78,14 +96,41 @@ export const BtnStatus = styled('button', {
       in_progress: {
         backgroundColor: '$blue-light',
         color: '$blue',
-        // '&:hover': {
-        //   backgroundColor: 'lightgray',
-        // },
+        border: '1px solid ',
       },
 
       completed: {
         backgroundColor: '$green-light',
         color: '$green',
+        border: '1px solid ',
+      },
+    },
+  },
+})
+
+export const ActionContainer = styled('div', {
+  display: 'flex',
+  gap: '1rem',
+})
+
+export const BtnAction = styled('button', {
+  border: 0,
+  background: 'transparent',
+
+  variants: {
+    type: {
+      edit: {
+        color: '$blue',
+      },
+
+      in_progress: {},
+
+      check: {
+        color: '$green',
+      },
+
+      trash: {
+        color: '$red',
       },
     },
   },

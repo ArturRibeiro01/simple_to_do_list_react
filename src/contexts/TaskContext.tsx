@@ -13,6 +13,8 @@ interface TasksContextType {
   tasks: Tasks[]
   fetchTasks: () => void
   pendindTasks: object[]
+  currentTasks: object[]
+  completedTasks: object[]
 }
 
 interface TasksProviderProps {
@@ -37,8 +39,17 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
-  // const inprogressTaks = tasks.filter((task) => task.status === 'in_progress')
-  // const completedTasks = tasks.filter((task) => task.status === 'completed')
+  const currentTasks = tasks
+    .filter((task) => task.status === 'in_progress')
+    .sort((a: any, b: any) => {
+      return a.createdAt?.localeCompare(b.createdAt)
+    })
+
+  const completedTasks = tasks
+    .filter((task) => task.status === 'completed')
+    .sort((a: any, b: any) => {
+      return a.createdAt?.localeCompare(b.createdAt)
+    })
 
   useEffect(() => {
     fetchTasks()
@@ -50,6 +61,8 @@ export function TasksProvider({ children }: TasksProviderProps) {
         tasks,
         fetchTasks,
         pendindTasks,
+        currentTasks,
+        completedTasks,
       }}
     >
       {children}

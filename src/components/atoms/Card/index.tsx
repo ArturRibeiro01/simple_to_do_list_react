@@ -1,6 +1,8 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState } from 'react'
 import {
+  ActionContainer,
+  BtnAction,
   BtnStatus,
   CardContent,
   CardFooter,
@@ -25,9 +27,9 @@ export default function Card({ createdDate, task, status }: CardProps) {
       className="CollapsibleRoot"
       open={open}
       onOpenChange={setOpen}
+      status={status}
     >
       <CardHeader>
-        {/* <span>{dateFormatter.format(createdDate)}</span> */}
         <span>{dateFormatter.format(new Date(createdDate))}</span>
 
         <Collapsible.Trigger asChild>
@@ -45,12 +47,28 @@ export default function Card({ createdDate, task, status }: CardProps) {
 
       <CardFooter>
         <BtnStatus status={status}>{status}</BtnStatus>
-        <PencilLine size={24} />
-        <div>
-          {/* <div>btn andamento</div> */}
-          <Check size={24} />
-          <Trash size={24} />
-        </div>
+
+        {status !== 'completed' ? (
+          <BtnAction type="edit">
+            <PencilLine size={24} />
+          </BtnAction>
+        ) : null}
+
+        <ActionContainer>
+          {status !== 'completed' ? (
+            <BtnAction type="check">
+              <Check size={24} />
+            </BtnAction>
+          ) : null}
+
+          {/* <BtnAction type="check">
+            <Check size={24} />
+          </BtnAction> */}
+
+          <BtnAction type="trash">
+            <Trash size={24} />
+          </BtnAction>
+        </ActionContainer>
       </CardFooter>
     </ContainerCard>
   )

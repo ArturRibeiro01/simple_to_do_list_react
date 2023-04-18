@@ -8,6 +8,12 @@ export default function TaskListTemplate() {
   const pendingTasks = useContextSelector(TasksContext, (context) => {
     return context.pendindTasks
   })
+  const currentTasks = useContextSelector(TasksContext, (context) => {
+    return context.currentTasks
+  })
+  const completedTasks = useContextSelector(TasksContext, (context) => {
+    return context.completedTasks
+  })
 
   return (
     <TemplateContainer>
@@ -16,6 +22,34 @@ export default function TaskListTemplate() {
         quantitytasks={pendingTasks.length}
       >
         {pendingTasks.map((card: any) => (
+          <Card
+            key={card.id}
+            createdDate={card.createdAt}
+            task={card.content}
+            status={card.status}
+          />
+        ))}
+      </TaskList>
+
+      <TaskList
+        subtitleStatus={'Tarefas em andamento'}
+        quantitytasks={currentTasks.length}
+      >
+        {currentTasks.map((card: any) => (
+          <Card
+            key={card.id}
+            createdDate={card.createdAt}
+            task={card.content}
+            status={card.status}
+          />
+        ))}
+      </TaskList>
+
+      <TaskList
+        subtitleStatus={'Tarefas concluídas'}
+        quantitytasks={completedTasks.length}
+      >
+        {completedTasks.map((card: any) => (
           <Card
             key={card.id}
             createdDate={card.createdAt}
