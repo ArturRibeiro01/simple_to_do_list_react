@@ -26,6 +26,8 @@ interface CardProps {
   task: string
   status: 'pending' | 'in_progress' | 'completed'
   deletetask: any
+  cardToProgress: any
+  cardToComplete: () => void
 }
 
 export default function Card({
@@ -33,6 +35,8 @@ export default function Card({
   task,
   status,
   deletetask,
+  cardToProgress,
+  cardToComplete,
 }: CardProps) {
   const [open, setOpen] = useState(false)
 
@@ -71,11 +75,12 @@ export default function Card({
         <ActionContainer>
           {status !== 'completed' ? (
             <>
-              <BtnAction type="in_progress">
-                <HourglassHigh size={24} />
-              </BtnAction>
-
-              <BtnAction type="check">
+              {status !== 'in_progress' && (
+                <BtnAction type="in_progress">
+                  <HourglassHigh size={24} onClick={cardToProgress} />
+                </BtnAction>
+              )}
+              <BtnAction type="check" onClick={cardToComplete}>
                 <Check size={24} />
               </BtnAction>
             </>

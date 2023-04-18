@@ -21,9 +21,36 @@ export default function TaskListTemplate() {
     return context.deleteTask
   })
 
+  const updatetaskToProgress = useContextSelector(TasksContext, (context) => {
+    return context.TasktoInProgress
+  })
+
   async function handleDeleteTask(data: any) {
     const id = data
     await deleteTask(id)
+  }
+
+  async function handleTaskToProgress(data: any) {
+    const selectedItem = data
+
+    console.log('handleTasktoProgress', selectedItem)
+
+    await updatetaskToProgress({
+      id: selectedItem.id,
+      status: selectedItem.status !== 'in_progress' ? 'in_progress' : 'pending',
+      content: selectedItem.content,
+      createdAt: selectedItem.createdAt,
+    })
+  }
+
+  async function handleTaskToComplete(data: any) {
+    const selectedItem = data
+    await updatetaskToProgress({
+      id: selectedItem.id,
+      status: 'completed',
+      content: selectedItem.content,
+      createdAt: selectedItem.createdAt,
+    })
   }
 
   return (
@@ -39,7 +66,9 @@ export default function TaskListTemplate() {
             createdDate={card.createdAt}
             task={card.content}
             status={card.status}
-            deletetask={() => handleDeleteTask(card.id)}
+            deletetask={() => handleDeleteTask(card)}
+            cardToProgress={() => handleTaskToProgress(card)}
+            cardToComplete={() => handleTaskToComplete(card)}
           />
         ))}
       </TaskList>
@@ -56,6 +85,8 @@ export default function TaskListTemplate() {
             task={card.content}
             deletetask={() => handleDeleteTask(card.id)}
             status={card.status}
+            cardToProgress={() => handleTaskToProgress(card)}
+            cardToComplete={() => handleTaskToComplete(card)}
           />
         ))}
       </TaskList>
@@ -72,6 +103,8 @@ export default function TaskListTemplate() {
             task={card.content}
             status={card.status}
             deletetask={() => handleDeleteTask(card.id)}
+            cardToProgress={() => handleTaskToProgress(card.id)}
+            cardToComplete={() => handleTaskToComplete(card)}
           />
         ))}
       </TaskList>

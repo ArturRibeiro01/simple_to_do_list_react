@@ -13,6 +13,13 @@ interface DeleteTask {
   id: string
 }
 
+interface TasktoInProgressProps {
+  id: number
+  status: string
+  content: string
+  createdAt?: string
+}
+
 interface TasksContextType {
   tasks: Tasks[]
   fetchTasks: () => void
@@ -20,6 +27,7 @@ interface TasksContextType {
   currentTasks: object[]
   completedTasks: object[]
   deleteTask: (data: DeleteTask) => Promise<void>
+  TasktoInProgress: (data: TasktoInProgressProps) => Promise<void>
 }
 
 interface TasksProviderProps {
@@ -56,10 +64,26 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
-  const deleteTask = useCallback(async (data: DeleteTask) => {
-    const id = data
+  // DeleteTask
+  const deleteTask = useCallback(
+    async (data: DeleteTask) => {
+      const id = data
 
-    await api.delete(`tasks/${id}`)
+      await api.delete(`tasks/${id}`)
+      fetchTasks()
+    },
+    [fetchTasks],
+  )
+
+  // Atualiza o status de um item
+  const TasktoInProgress = useCallback(async (data: TasktoInProgressProps) => {
+    const { id, status, content, createdAt } = data
+    const response = await api.put(`tasks/${id}`, {
+      status,
+      content,
+      createdAt,
+    })
+    console.log(response)
     fetchTasks()
   }, [])
 
@@ -76,6 +100,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         currentTasks,
         completedTasks,
         deleteTask,
+        TasktoInProgress,
       }}
     >
       {children}
