@@ -13,6 +13,11 @@ interface DeleteTask {
   id: string
 }
 
+interface CreateTaskProps {
+  content: string
+  status: string
+}
+
 interface TasktoInProgressProps {
   id: number
   status: string
@@ -26,6 +31,7 @@ interface TasksContextType {
   pendindTasks: object[]
   currentTasks: object[]
   completedTasks: object[]
+  createNewTask: (data: CreateTaskProps) => Promise<void>
   deleteTask: (data: DeleteTask) => Promise<void>
   TasktoInProgress: (data: TasktoInProgressProps) => Promise<void>
 }
@@ -64,6 +70,20 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
+  // Criar uma nova task
+  const createNewTask = useCallback(async (data: CreateTaskProps) => {
+    const { content, status } = data
+
+    // const response =
+    await api.post('tasks', {
+      content,
+      status,
+      createdAt: new Date(),
+    })
+    // setTasks((state) => [response.data, ...state])
+    fetchTasks()
+  }, [])
+
   // DeleteTask
   const deleteTask = useCallback(
     async (data: DeleteTask) => {
@@ -76,16 +96,19 @@ export function TasksProvider({ children }: TasksProviderProps) {
   )
 
   // Atualiza o status de um item
-  const TasktoInProgress = useCallback(async (data: TasktoInProgressProps) => {
-    const { id, status, content, createdAt } = data
-    const response = await api.put(`tasks/${id}`, {
-      status,
-      content,
-      createdAt,
-    })
-    console.log(response)
-    fetchTasks()
-  }, [])
+  const TasktoInProgress = useCallback(
+    async (data: TasktoInProgressProps) => {
+      const { id, status, content, createdAt } = data
+      const response = await api.put(`tasks/${id}`, {
+        status,
+        content,
+        createdAt,
+      })
+      console.log(response)
+      fetchTasks()
+    },
+    [fetchTasks],
+  )
 
   useEffect(() => {
     fetchTasks()
@@ -99,6 +122,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         pendindTasks,
         currentTasks,
         completedTasks,
+        createNewTask,
         deleteTask,
         TasktoInProgress,
       }}

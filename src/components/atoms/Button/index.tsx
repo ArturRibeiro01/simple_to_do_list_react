@@ -1,7 +1,37 @@
-import { DialogRoot, DialogTrigger, DialogTriggerButton } from './styles'
-import { PlusCircle } from 'phosphor-react'
+import { DialogPortal } from '@radix-ui/react-dialog'
+import {
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogTitle,
+  DialogRoot,
+  DialogTrigger,
+  DialogTriggerButton,
+  TextArea,
+  ButtonSend,
+  IconButton,
+} from './styles'
+import * as Dialog from '@radix-ui/react-dialog'
+import { PlusCircle, XCircle } from 'phosphor-react'
+import Subtitle from '../global/Subtitle'
+import { useState } from 'react'
+import { useContextSelector } from 'use-context-selector'
+import { TasksContext } from '../../../contexts/TaskContext'
 
 export default function NewTaskButton() {
+  const [textcaptured, setTextCaptured] = useState('')
+
+  const createNewTask = useContextSelector(TasksContext, (context) => {
+    return context.createNewTask
+  })
+
+  async function handleNewTask() {
+    await createNewTask({
+      content: textcaptured,
+      status: 'pending',
+    })
+  }
+
   return (
     <DialogRoot>
       <DialogTrigger asChild>
@@ -11,41 +41,31 @@ export default function NewTaskButton() {
         </DialogTriggerButton>
       </DialogTrigger>
 
-      {/* <Dialog.Portal>
-        <Dialog.Overlay className="DialogOverlay" />
-        <Dialog.Content className="DialogContent">
-          <Dialog.Title className="DialogTitle">Edit profile</Dialog.Title>
-          <Dialog.Description className="DialogDescription">
-            Make changes to your profile here. Click save when re done.
-          </Dialog.Description>
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="name">
-              Name
-            </label>
-            <input className="Input" id="name" defaultValue="Pedro Duarte" />
-          </fieldset>
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="username">
-              Username
-            </label>
-            <input className="Input" id="username" defaultValue="@peduarte" />
-          </fieldset>
-          <div
-            style={{
-              display: 'flex',
-              marginTop: 25,
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Dialog.Close asChild>
-              <button className="Button green">Save changes</button>
-            </Dialog.Close>
+      <DialogPortal>
+        <DialogOverlay />
+
+        <DialogContent>
+          <DialogTitle>
+            <Subtitle status={'Criar Nova Task'} />
+          </DialogTitle>
+
+          <DialogDescription>
+            Descreva sua tarefa no campo abaixo e clique no botão Criar task
+            para criar a tarefa
+          </DialogDescription>
+
+          <TextArea onChange={(event) => setTextCaptured(event.target.value)} />
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <ButtonSend onClick={handleNewTask}>Criar nova tarefa</ButtonSend>
           </div>
+
           <Dialog.Close asChild>
-            <button className="IconButton" aria-label="Close"></button>
+            <IconButton aria-label="Close">
+              <XCircle size={28} />
+            </IconButton>
           </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal> */}
+        </DialogContent>
+      </DialogPortal>
     </DialogRoot>
   )
 }
