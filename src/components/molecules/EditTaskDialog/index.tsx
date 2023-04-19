@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DialogPortal } from '@radix-ui/react-dialog'
 import {
   DialogContent,
@@ -12,18 +13,24 @@ import {
   IconButton,
 } from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
-import { PlusCircle, XCircle } from 'phosphor-react'
-import Subtitle from '../global/Subtitle'
-import { useState } from 'react'
+import { PencilLine, XCircle } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'
 import { TasksContext } from '../../../contexts/TaskContext'
+import Subtitle from '../../atoms/global/Subtitle'
 
-export default function NewTaskButton() {
+interface EditTaskProps {
+  infoTask: any
+}
+
+export default function EditTaskDialog(infoTask: EditTaskProps) {
   const [textcaptured, setTextCaptured] = useState('')
 
   const createNewTask = useContextSelector(TasksContext, (context) => {
     return context.createNewTask
   })
+  console.log('infotask', infoTask)
+
+  console.log('textcaptured', textcaptured)
 
   async function handleNewTask() {
     await createNewTask({
@@ -36,8 +43,7 @@ export default function NewTaskButton() {
     <DialogRoot>
       <DialogTrigger asChild>
         <DialogTriggerButton>
-          <PlusCircle size={18} />
-          Nova tarefa
+          <PencilLine size={24} />
         </DialogTriggerButton>
       </DialogTrigger>
 
@@ -46,12 +52,11 @@ export default function NewTaskButton() {
 
         <DialogContent>
           <DialogTitle>
-            <Subtitle status={'Criar Nova Task'} />
+            <Subtitle status={'Editar Task'} />
           </DialogTitle>
 
           <DialogDescription>
-            Descreva sua tarefa no campo abaixo e clique no botão Criar task
-            para criar a tarefa
+            Corrija ou atualize o campo da sua task
           </DialogDescription>
 
           <TextArea onChange={(event) => setTextCaptured(event.target.value)} />

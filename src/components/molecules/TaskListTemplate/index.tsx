@@ -33,8 +33,6 @@ export default function TaskListTemplate() {
   async function handleTaskToProgress(data: any) {
     const selectedItem = data
 
-    console.log('handleTasktoProgress', selectedItem)
-
     await updatetaskToProgress({
       id: selectedItem.id,
       status: selectedItem.status !== 'in_progress' ? 'in_progress' : 'pending',

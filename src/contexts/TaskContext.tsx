@@ -9,13 +9,20 @@ interface Tasks {
   createdAt?: string
 }
 
-interface DeleteTask {
-  id: string
-}
-
 interface CreateTaskProps {
   content: string
   status: string
+}
+
+interface UpdateTextTaskProps {
+  id: number
+  status: string
+  content: string
+  createdAt?: string
+}
+
+interface DeleteTask {
+  id: string
 }
 
 interface TasktoInProgressProps {
@@ -32,6 +39,7 @@ interface TasksContextType {
   currentTasks: object[]
   completedTasks: object[]
   createNewTask: (data: CreateTaskProps) => Promise<void>
+  updateText: (data: UpdateTextTaskProps) => Promise<void>
   deleteTask: (data: DeleteTask) => Promise<void>
   TasktoInProgress: (data: TasktoInProgressProps) => Promise<void>
 }
@@ -84,6 +92,18 @@ export function TasksProvider({ children }: TasksProviderProps) {
     fetchTasks()
   }, [])
 
+  // editTask
+  const updateText = useCallback(async (data: UpdateTextTaskProps) => {
+    const { id, content, status, createdAt } = data
+
+    await api.put(`tasks/${id}`, {
+      content,
+      status,
+      createdAt,
+    })
+    fetchTasks()
+  }, [])
+
   // DeleteTask
   const deleteTask = useCallback(
     async (data: DeleteTask) => {
@@ -125,6 +145,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         createNewTask,
         deleteTask,
         TasktoInProgress,
+        updateText,
       }}
     >
       {children}

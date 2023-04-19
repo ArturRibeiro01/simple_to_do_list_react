@@ -11,14 +11,8 @@ import {
   CardTitle,
   ContainerCard,
 } from './styles'
-import {
-  CaretDown,
-  CaretUp,
-  Check,
-  HourglassHigh,
-  PencilLine,
-  Trash,
-} from 'phosphor-react'
+import { CaretDown, CaretUp, Check, HourglassHigh, Trash } from 'phosphor-react'
+import EditTaskDialog from '../../molecules/EditTaskDialog'
 
 interface CardProps {
   id: number
@@ -28,6 +22,7 @@ interface CardProps {
   deletetask: any
   cardToProgress: any
   cardToComplete: () => void
+  selectedcardtoEdit: any
 }
 
 export default function Card({
@@ -37,6 +32,7 @@ export default function Card({
   deletetask,
   cardToProgress,
   cardToComplete,
+  selectedcardtoEdit,
 }: CardProps) {
   const [open, setOpen] = useState(false)
 
@@ -67,9 +63,7 @@ export default function Card({
         <BtnStatus status={status}>{status}</BtnStatus>
 
         {status !== 'completed' ? (
-          <BtnAction type="edit">
-            <PencilLine size={24} />
-          </BtnAction>
+          <EditTaskDialog infoTask={selectedcardtoEdit} />
         ) : null}
 
         <ActionContainer>
@@ -85,10 +79,11 @@ export default function Card({
               </BtnAction>
             </>
           ) : null}
-
-          <BtnAction type="trash" onClick={deletetask}>
-            <Trash size={24} />
-          </BtnAction>
+          {status !== 'pending' ? (
+            <BtnAction type="trash" onClick={deletetask}>
+              <Trash size={24} />
+            </BtnAction>
+          ) : null}
         </ActionContainer>
       </CardFooter>
     </ContainerCard>

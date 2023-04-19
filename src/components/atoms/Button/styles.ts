@@ -65,6 +65,7 @@ export const DialogDescription = styled(Dialog.Description, {
   color: '$pink',
   fontSize: '$3xs',
 })
+
 export const TextArea = styled('textarea', {
   marginTop: '1rem',
   border: '1px solid',
