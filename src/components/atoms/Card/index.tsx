@@ -22,7 +22,6 @@ interface CardProps {
   deletetask: any
   cardToProgress: any
   cardToComplete: () => void
-  selectedcardtoEdit: any
 }
 
 export default function Card({
@@ -32,7 +31,6 @@ export default function Card({
   deletetask,
   cardToProgress,
   cardToComplete,
-  selectedcardtoEdit,
 }: CardProps) {
   const [open, setOpen] = useState(false)
 
@@ -62,9 +60,7 @@ export default function Card({
       <CardFooter>
         <BtnStatus status={status}>{status}</BtnStatus>
 
-        {status !== 'completed' ? (
-          <EditTaskDialog infoTask={selectedcardtoEdit} />
-        ) : null}
+        {status !== 'completed' ? <EditTaskDialog /> : null}
 
         <ActionContainer>
           {status !== 'completed' ? (

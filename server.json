@@ -13,16 +13,28 @@
       "id": 12
     },
     {
+      "status": "in_progress",
       "content": "dsadasdasdasdas",
-      "status": "pending",
       "createdAt": "2023-04-19T01:08:47.163Z",
       "id": 13
     },
     {
-      "content": "uiyibjk iuyiyubjklujio.  iouioiun ",
+      "status": "in_progress",
+      "content": "Novas configurações de teste\n",
+      "createdAt": "2023-04-19T17:43:55.143Z",
+      "id": 15
+    },
+    {
+      "content": "Criar task\n",
       "status": "pending",
-      "createdAt": "2023-04-19T01:47:00.065Z",
-      "id": 14
+      "createdAt": "2023-04-19T17:54:19.153Z",
+      "id": 16
+    },
+    {
+      "content": "Nova Task criada com sucesso. \nEstamos ajustando uma nova task, estamos fazendo uma nova task",
+      "status": "pending",
+      "createdAt": "2023-04-19T21:57:28.505Z",
+      "id": 17
     }
   ]
 }

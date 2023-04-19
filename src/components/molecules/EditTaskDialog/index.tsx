@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { DialogPortal } from '@radix-ui/react-dialog'
 import {
   DialogContent,
@@ -9,35 +8,20 @@ import {
   DialogTrigger,
   DialogTriggerButton,
   TextArea,
-  ButtonSend,
+  // ButtonSend,
   IconButton,
+  ButtonSend,
 } from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
 import { PencilLine, XCircle } from 'phosphor-react'
-import { useContextSelector } from 'use-context-selector'
-import { TasksContext } from '../../../contexts/TaskContext'
 import Subtitle from '../../atoms/global/Subtitle'
 
-interface EditTaskProps {
-  infoTask: any
-}
+// interface EditTaskProps {
+//   infoTask: any
+// }
 
-export default function EditTaskDialog(infoTask: EditTaskProps) {
-  const [textcaptured, setTextCaptured] = useState('')
-
-  const createNewTask = useContextSelector(TasksContext, (context) => {
-    return context.createNewTask
-  })
-  console.log('infotask', infoTask)
-
-  console.log('textcaptured', textcaptured)
-
-  async function handleNewTask() {
-    await createNewTask({
-      content: textcaptured,
-      status: 'pending',
-    })
-  }
+export default function EditTaskDialog() {
+  async function handleEditTask() {}
 
   return (
     <DialogRoot>
@@ -58,11 +42,13 @@ export default function EditTaskDialog(infoTask: EditTaskProps) {
           <DialogDescription>
             Corrija ou atualize o campo da sua task
           </DialogDescription>
+          <TextArea
+          // onChange={''}
+          ></TextArea>
 
-          <TextArea onChange={(event) => setTextCaptured(event.target.value)} />
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Dialog.Close asChild className="close-dialog">
-              <ButtonSend onClick={handleNewTask}>Criar nova tarefa</ButtonSend>
+              <ButtonSend onClick={handleEditTask}>Enviar Alteração</ButtonSend>
             </Dialog.Close>
           </div>
 

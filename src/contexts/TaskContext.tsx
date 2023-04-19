@@ -78,44 +78,41 @@ export function TasksProvider({ children }: TasksProviderProps) {
       return a.createdAt?.localeCompare(b.createdAt)
     })
 
-  // Criar uma nova task
-  const createNewTask = useCallback(async (data: CreateTaskProps) => {
-    const { content, status } = data
+  const createNewTask = useCallback(
+    async (data: CreateTaskProps) => {
+      const { content, status } = data
+      await api.post('tasks', {
+        content,
+        status,
+        createdAt: new Date(),
+      })
+      fetchTasks()
+    },
+    [fetchTasks],
+  )
 
-    // const response =
-    await api.post('tasks', {
-      content,
-      status,
-      createdAt: new Date(),
-    })
-    // setTasks((state) => [response.data, ...state])
-    fetchTasks()
-  }, [])
+  const updateText = useCallback(
+    async (data: UpdateTextTaskProps) => {
+      const { id, content, status, createdAt } = data
+      await api.put(`tasks/${id}`, {
+        content,
+        status,
+        createdAt,
+      })
+      fetchTasks()
+    },
+    [fetchTasks],
+  )
 
-  // editTask
-  const updateText = useCallback(async (data: UpdateTextTaskProps) => {
-    const { id, content, status, createdAt } = data
-
-    await api.put(`tasks/${id}`, {
-      content,
-      status,
-      createdAt,
-    })
-    fetchTasks()
-  }, [])
-
-  // DeleteTask
   const deleteTask = useCallback(
     async (data: DeleteTask) => {
       const id = data
-
       await api.delete(`tasks/${id}`)
       fetchTasks()
     },
     [fetchTasks],
   )
 
-  // Atualiza o status de um item
   const TasktoInProgress = useCallback(
     async (data: TasktoInProgressProps) => {
       const { id, status, content, createdAt } = data
