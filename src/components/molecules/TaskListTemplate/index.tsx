@@ -1,9 +1,15 @@
 import { useContextSelector } from 'use-context-selector'
-import { FilterContainer, TemplateContainer, TextAlert } from './styles'
+import {
+  FilterContainer,
+  FilterInput,
+  TemplateContainer,
+  TextAlert,
+} from './styles'
 import { TasksContext } from '../../../contexts/TaskContext'
 import TaskList from './TaskList'
 import Card from '../../atoms/Card'
 import { useState } from 'react'
+import { MagnifyingGlass } from 'phosphor-react'
 
 export default function TaskListTemplate() {
   const [filterText, setFilterText] = useState('')
@@ -65,10 +71,13 @@ export default function TaskListTemplate() {
   return (
     <TemplateContainer>
       <FilterContainer>
-        <input
-          type="text"
-          onChange={(event) => setFilterText(event.target.value)}
-        />
+        <FilterInput>
+          <MagnifyingGlass size={20} />
+          <input
+            type="text"
+            onChange={(event) => setFilterText(event.target.value)}
+          />
+        </FilterInput>
 
         {filterText !== '' && newArray.length === 0 ? (
           <TextAlert>Não Foram encontrados resultados</TextAlert>
