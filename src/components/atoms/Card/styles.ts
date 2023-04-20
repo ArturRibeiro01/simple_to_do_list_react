@@ -6,6 +6,9 @@ export const ContainerCard = styled(Collapsible, {
   padding: '1rem',
   border: '1px solid',
 
+  display: 'block',
+  justifyContent: 'space-between',
+
   borderRadius: '8px',
   position: 'relative',
 

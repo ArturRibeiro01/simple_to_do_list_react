@@ -13,6 +13,14 @@ import {
 } from './styles'
 import { CaretDown, CaretUp, Check, HourglassHigh, Trash } from 'phosphor-react'
 import EditTaskDialog from '../../molecules/EditTaskDialog'
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from './tooltipStyles'
 
 interface CardProps {
   id: number
@@ -33,9 +41,9 @@ export default function Card({
   cardToProgress,
   cardToComplete,
 }: CardProps) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
-  function textStatus(param) {
+  function textStatus(param: string) {
     switch (param) {
       case 'pending':
         return 'Tarefa Pendente'
@@ -71,7 +79,6 @@ export default function Card({
         </Collapsible.Content>
 
         <CardFooter>
-          {/* <BtnStatus status={status}>{status}</BtnStatus> */}
           <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
 
           {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
@@ -80,9 +87,21 @@ export default function Card({
             {status !== 'completed' ? (
               <>
                 {status !== 'in_progress' && (
-                  <BtnAction type="in_progress">
-                    <HourglassHigh size={24} onClick={cardToProgress} />
-                  </BtnAction>
+                  <TooltipProvider>
+                    <TooltipRoot>
+                      <TooltipTrigger asChild>
+                        <BtnAction type="in_progress">
+                          <HourglassHigh size={24} onClick={cardToProgress} />
+                        </BtnAction>
+                      </TooltipTrigger>
+                      <TooltipPortal>
+                        <TooltipContent sideOffset={5}>
+                          Add to library
+                          <TooltipArrow />
+                        </TooltipContent>
+                      </TooltipPortal>
+                    </TooltipRoot>
+                  </TooltipProvider>
                 )}
                 <BtnAction type="check" onClick={cardToComplete}>
                   <Check size={24} />
