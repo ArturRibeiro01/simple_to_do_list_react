@@ -42,6 +42,7 @@ interface TasksContextType {
   updateText: (data: UpdateTextTaskProps) => Promise<void>
   deleteTask: (data: DeleteTask) => Promise<void>
   TasktoInProgress: (data: TasktoInProgressProps) => Promise<void>
+  filterTask: any
 }
 
 interface TasksProviderProps {
@@ -59,6 +60,13 @@ export function TasksProvider({ children }: TasksProviderProps) {
     })
     setTasks(response.data)
   }, [])
+
+  const filterTask = useCallback(
+    async (param: any) => {
+      tasks.filter((task) => task.content === param)
+    },
+    [tasks],
+  )
 
   const pendindTasks = tasks
     .filter((task) => task.status === 'pending')
@@ -142,6 +150,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         deleteTask,
         TasktoInProgress,
         updateText,
+        filterTask,
       }}
     >
       {children}
