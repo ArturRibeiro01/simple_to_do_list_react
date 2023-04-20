@@ -8,20 +8,43 @@ import {
   DialogTrigger,
   DialogTriggerButton,
   TextArea,
-  // ButtonSend,
   IconButton,
   ButtonSend,
 } from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
 import { PencilLine, XCircle } from 'phosphor-react'
 import Subtitle from '../../atoms/global/Subtitle'
+import { useContextSelector } from 'use-context-selector'
+import { TasksContext } from '../../../contexts/TaskContext'
+import { useState } from 'react'
 
-// interface EditTaskProps {
-//   infoTask: any
-// }
+interface EditTaskDialogTask {
+  idCard: number
+}
 
-export default function EditTaskDialog() {
-  async function handleEditTask() {}
+export default function EditTaskDialog({ idCard }: EditTaskDialogTask) {
+  const tasks = useContextSelector(TasksContext, (context) => {
+    return context.tasks
+  })
+
+  const updateText = useContextSelector(TasksContext, (context) => {
+    return context.updateText
+  })
+
+  const selectedItem = tasks.filter((task) => task.id === idCard)
+
+  const [textcaptured, setTextCaptured] = useState(selectedItem[0].content)
+
+  console.log('textcaptured', textcaptured)
+
+  async function handleEditTask() {
+    await updateText({
+      id: selectedItem[0].id,
+      content: textcaptured,
+      status: selectedItem[0].status,
+      createdAt: selectedItem[0].createdAt,
+    })
+  }
 
   return (
     <DialogRoot>
@@ -39,16 +62,18 @@ export default function EditTaskDialog() {
             <Subtitle status={'Editar Task'} />
           </DialogTitle>
 
-          <DialogDescription>
-            Corrija ou atualize o campo da sua task
-          </DialogDescription>
-          <TextArea
-          // onChange={''}
-          ></TextArea>
+          <DialogDescription>Edite o texto da sua tarefa</DialogDescription>
+          <TextArea onChange={(event) => setTextCaptured(event.target.value)}>
+            {textcaptured}
+          </TextArea>
 
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Dialog.Close asChild className="close-dialog">
-              <ButtonSend onClick={handleEditTask}>Enviar Alteração</ButtonSend>
+              {selectedItem[0].content === textcaptured ? null : (
+                <ButtonSend onClick={handleEditTask}>
+                  Enviar Alteração
+                </ButtonSend>
+              )}
             </Dialog.Close>
           </div>
 

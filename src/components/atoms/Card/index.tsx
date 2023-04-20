@@ -25,6 +25,7 @@ interface CardProps {
 }
 
 export default function Card({
+  id,
   createdDate,
   task,
   status,
@@ -60,7 +61,7 @@ export default function Card({
       <CardFooter>
         <BtnStatus status={status}>{status}</BtnStatus>
 
-        {status !== 'completed' ? <EditTaskDialog /> : null}
+        {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
 
         <ActionContainer>
           {status !== 'completed' ? (
