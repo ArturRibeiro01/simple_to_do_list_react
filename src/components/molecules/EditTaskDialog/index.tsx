@@ -35,8 +35,6 @@ export default function EditTaskDialog({ idCard }: EditTaskDialogTask) {
 
   const [textcaptured, setTextCaptured] = useState(selectedItem[0].content)
 
-  console.log('textcaptured', textcaptured)
-
   async function handleEditTask() {
     await updateText({
       id: selectedItem[0].id,

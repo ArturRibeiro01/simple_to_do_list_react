@@ -15,6 +15,7 @@ import {
 import { CaretDown, CaretUp, Check, HourglassHigh, Trash } from 'phosphor-react'
 import EditTaskDialog from '../../molecules/EditTaskDialog'
 import {
+  DivNull,
   TooltipArrow,
   TooltipContent,
   TooltipPortal,
@@ -78,20 +79,22 @@ export default function Card({
         <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
 
         {status !== 'completed' ? (
-          // <TooltipProvider>
-          //   <TooltipRoot>
-          //     <TooltipTrigger asChild>
-          <EditTaskDialog idCard={id} />
-        ) : //     </TooltipTrigger>
-        //   </TooltipRoot>
-        //   <TooltipPortal>
-        //     <TooltipContent sideOffset={5} icon="edit">
-        //       Editar Tarefa
-        //       <TooltipArrow icon="edit" />
-        //     </TooltipContent>
-        //   </TooltipPortal>
-        // </TooltipProvider>
-        null}
+          <TooltipProvider>
+            <TooltipRoot>
+              <TooltipTrigger asChild>
+                <DivNull>
+                  <EditTaskDialog idCard={id} />
+                </DivNull>
+              </TooltipTrigger>
+              <TooltipPortal>
+                <TooltipContent sideOffset={5} icon="edit">
+                  Editar texto da Tarefa
+                  <TooltipArrow icon="edit" />
+                </TooltipContent>
+              </TooltipPortal>
+            </TooltipRoot>
+          </TooltipProvider>
+        ) : null}
 
         <ActionContainer>
           {status !== 'completed' ? (
@@ -114,9 +117,25 @@ export default function Card({
                 </TooltipProvider>
               )}
 
-              <BtnAction type="check" onClick={cardToComplete}>
+              <TooltipProvider>
+                <TooltipRoot>
+                  <TooltipTrigger asChild>
+                    <BtnAction type="check" onClick={cardToComplete}>
+                      <Check size={24} />
+                    </BtnAction>
+                  </TooltipTrigger>
+                  <TooltipPortal>
+                    <TooltipContent sideOffset={5} icon="check">
+                      Concluir Tarefa
+                      <TooltipArrow icon="check" />
+                    </TooltipContent>
+                  </TooltipPortal>
+                </TooltipRoot>
+              </TooltipProvider>
+
+              {/* <BtnAction type="check" onClick={cardToComplete}>
                 <Check size={24} />
-              </BtnAction>
+              </BtnAction> */}
             </>
           ) : null}
           {status !== 'pending' ? (

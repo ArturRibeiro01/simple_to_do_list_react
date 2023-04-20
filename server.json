@@ -7,7 +7,7 @@
       "id": 12
     },
     {
-      "status": "in_progress",
+      "status": "completed",
       "content": "dsadasdasdasdas",
       "createdAt": "2023-04-19T01:08:47.163Z",
       "id": 13
@@ -31,8 +31,8 @@
       "id": 17
     },
     {
+      "status": "completed",
       "content": "Nada mal curtir o terrasamba não é nada maaaaaal",
-      "status": "pending",
       "createdAt": "2023-04-20T02:35:06.794Z",
       "id": 18
     },
@@ -41,6 +41,12 @@
       "content": "dsa;ldsa[ds k[spaooe[wpr[ewre [pl;'fd,s. mkoep[rw p[p[orew,; kkl;klfds fps[d][fp]ds p[]pf[ds[pdsa[]p ",
       "createdAt": "2023-04-20T05:14:13.791Z",
       "id": 19
+    },
+    {
+      "status": "in_progress",
+      "content": "Nova task Criada com sucessokjjkoijunhbghnjmiko\n",
+      "createdAt": "2023-04-20T15:27:02.211Z",
+      "id": 20
     }
   ]
 }

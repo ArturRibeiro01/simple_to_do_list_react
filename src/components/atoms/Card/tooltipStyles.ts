@@ -26,6 +26,14 @@ const slideLeftAndFade = keyframes({
   '100%': { opacity: 1, transform: 'translateX(0)' },
 })
 
+export const DivNull = styled('div', {
+  all: 'unset',
+  width: 'fit-content',
+  height: 'fit-content',
+  display: 'flex',
+  alignItems: 'baseline',
+})
+
 export const TooltipContent = styled(Tooltip.Content, {
   borderRadius: 4,
   padding: '8px 10px',
@@ -65,9 +73,10 @@ export const TooltipContent = styled(Tooltip.Content, {
         color: '$white',
       },
 
-      completed: {
-        backgroundColor: '$green-light',
-        borderColor: '$green',
+      check: {
+        backgroundColor: '$green',
+        borderColor: '$white',
+        color: '$white',
       },
     },
   },
@@ -90,9 +99,8 @@ export const TooltipArrow = styled(Tooltip.Arrow, {
         fill: '$blue',
       },
 
-      completed: {
-        backgroundColor: '$green-light',
-        borderColor: '$green',
+      check: {
+        fill: '$green',
       },
     },
   },

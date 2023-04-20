@@ -116,12 +116,11 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const TasktoInProgress = useCallback(
     async (data: TasktoInProgressProps) => {
       const { id, status, content, createdAt } = data
-      const response = await api.put(`tasks/${id}`, {
+      await api.put(`tasks/${id}`, {
         status,
         content,
         createdAt,
       })
-      console.log(response)
       fetchTasks()
     },
     [fetchTasks],
