@@ -68,7 +68,7 @@ export default function Card({
           </Collapsible.Trigger>
         </CardHeader>
 
-        <CardTitle>{task}</CardTitle>
+        <CardTitle status={status}>{task}</CardTitle>
 
         <Collapsible.Content>
           <CardContent>{task}</CardContent>

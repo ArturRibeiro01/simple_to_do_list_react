@@ -67,6 +67,22 @@ export const CardTitle = styled('p', {
   whiteSpace: 'nowrap',
   color: '$gray-800',
   marginBottom: '0.5rem',
+
+  variants: {
+    status: {
+      pending: {
+        color: '$orange',
+      },
+
+      in_progress: {
+        color: '$blue',
+      },
+
+      completed: {
+        color: '$green',
+      },
+    },
+  },
 })
 
 export const CardContent = styled('p', {
