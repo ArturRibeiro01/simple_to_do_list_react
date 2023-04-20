@@ -35,54 +35,68 @@ export default function Card({
 }: CardProps) {
   const [open, setOpen] = useState(false)
 
+  function textStatus(param) {
+    switch (param) {
+      case 'pending':
+        return 'Tarefa Pendente'
+      case 'in_progress':
+        return 'Tarefa em andamento'
+      case 'completed':
+        return 'Tarefa Finalizada'
+    }
+  }
+
   return (
-    <ContainerCard
-      className="CollapsibleRoot"
-      open={open}
-      onOpenChange={setOpen}
-      status={status}
-    >
-      <CardHeader>
-        <span>{dateFormatter.format(new Date(createdDate))}</span>
+    <>
+      <ContainerCard
+        className="CollapsibleRoot"
+        open={open}
+        onOpenChange={setOpen}
+        status={status}
+      >
+        <CardHeader>
+          <span>{dateFormatter.format(new Date(createdDate))}</span>
 
-        <Collapsible.Trigger asChild>
-          <button>
-            {open ? <CaretUp size={20} /> : <CaretDown size={20} />}
-          </button>
-        </Collapsible.Trigger>
-      </CardHeader>
+          <Collapsible.Trigger asChild>
+            <button>
+              {open ? <CaretUp size={20} /> : <CaretDown size={20} />}
+            </button>
+          </Collapsible.Trigger>
+        </CardHeader>
 
-      <CardTitle>{task}</CardTitle>
+        <CardTitle>{task}</CardTitle>
 
-      <Collapsible.Content>
-        <CardContent>{task}</CardContent>
-      </Collapsible.Content>
+        <Collapsible.Content>
+          <CardContent>{task}</CardContent>
+        </Collapsible.Content>
 
-      <CardFooter>
-        <BtnStatus status={status}>{status}</BtnStatus>
+        <CardFooter>
+          {/* <BtnStatus status={status}>{status}</BtnStatus> */}
+          <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
 
-        {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
+          {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
 
-        <ActionContainer>
-          {status !== 'completed' ? (
-            <>
-              {status !== 'in_progress' && (
-                <BtnAction type="in_progress">
-                  <HourglassHigh size={24} onClick={cardToProgress} />
+          <ActionContainer>
+            {status !== 'completed' ? (
+              <>
+                {status !== 'in_progress' && (
+                  <BtnAction type="in_progress">
+                    <HourglassHigh size={24} onClick={cardToProgress} />
+                  </BtnAction>
+                )}
+                <BtnAction type="check" onClick={cardToComplete}>
+                  <Check size={24} />
                 </BtnAction>
-              )}
-              <BtnAction type="check" onClick={cardToComplete}>
-                <Check size={24} />
+              </>
+            ) : null}
+            {status !== 'pending' ? (
+              <BtnAction type="trash" onClick={deletetask}>
+                <Trash size={24} />
               </BtnAction>
-            </>
-          ) : null}
-          {status !== 'pending' ? (
-            <BtnAction type="trash" onClick={deletetask}>
-              <Trash size={24} />
-            </BtnAction>
-          ) : null}
-        </ActionContainer>
-      </CardFooter>
-    </ContainerCard>
+            ) : null}
+          </ActionContainer>
+        </CardFooter>
+      </ContainerCard>
+    </>
   )
 }
