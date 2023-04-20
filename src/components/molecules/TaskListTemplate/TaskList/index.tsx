@@ -12,7 +12,8 @@ interface TaskListProps {
     | 'Tarefas Pendentes'
     | 'Tarefas em andamento'
     | 'Tarefas concluídas'
-    | 'tarefas Canceladas'
+    | 'Tarefas Canceladas'
+    | 'Tarefas Filtradas'
   quantitytasks: number
   children: ReactNode
   category: 'pending' | 'in_progress' | 'completed'

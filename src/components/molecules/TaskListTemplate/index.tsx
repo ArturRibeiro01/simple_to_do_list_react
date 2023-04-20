@@ -1,11 +1,13 @@
 import { useContextSelector } from 'use-context-selector'
-import { TemplateContainer } from './styles'
+import { FilterContainer, TemplateContainer, TextAlert } from './styles'
 import { TasksContext } from '../../../contexts/TaskContext'
 import TaskList from './TaskList'
 import Card from '../../atoms/Card'
 import { useState } from 'react'
 
 export default function TaskListTemplate() {
+  const [filterText, setFilterText] = useState('')
+
   const tasks = useContextSelector(TasksContext, (context) => {
     return context.tasks
   })
@@ -29,8 +31,6 @@ export default function TaskListTemplate() {
   const updatetaskToProgress = useContextSelector(TasksContext, (context) => {
     return context.TasktoInProgress
   })
-
-  const [filterText, setFilterText] = useState('')
 
   async function handleDeleteTask(data: any) {
     const id = data
@@ -62,23 +62,23 @@ export default function TaskListTemplate() {
     return param.content.includes(filterText)
   })
 
-  console.log('New Array', newArray)
-
   return (
     <TemplateContainer>
-      {/* Filtro aqui */}
-
-      <div>
+      <FilterContainer>
         <input
           type="text"
           onChange={(event) => setFilterText(event.target.value)}
         />
-      </div>
+
+        {filterText !== '' && newArray.length === 0 ? (
+          <TextAlert>Não Foram encontrados resultados</TextAlert>
+        ) : null}
+      </FilterContainer>
 
       {newArray.length !== 0 && filterText !== '' ? (
         <>
           <TaskList
-            subtitleStatus={'Tarefas Pendentes'}
+            subtitleStatus={'Tarefas Filtradas'}
             quantitytasks={pendingTasks.length}
             category={'pending'}
           >
