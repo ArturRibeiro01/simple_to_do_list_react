@@ -77,7 +77,21 @@ export default function Card({
       <CardFooter>
         <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
 
-        {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
+        {status !== 'completed' ? (
+          // <TooltipProvider>
+          //   <TooltipRoot>
+          //     <TooltipTrigger asChild>
+          <EditTaskDialog idCard={id} />
+        ) : //     </TooltipTrigger>
+        //   </TooltipRoot>
+        //   <TooltipPortal>
+        //     <TooltipContent sideOffset={5} icon="edit">
+        //       Editar Tarefa
+        //       <TooltipArrow icon="edit" />
+        //     </TooltipContent>
+        //   </TooltipPortal>
+        // </TooltipProvider>
+        null}
 
         <ActionContainer>
           {status !== 'completed' ? (
@@ -91,14 +105,15 @@ export default function Card({
                       </BtnAction>
                     </TooltipTrigger>
                     <TooltipPortal>
-                      <TooltipContent sideOffset={5}>
-                        Add to library
-                        <TooltipArrow />
+                      <TooltipContent sideOffset={5} icon="in_progress">
+                        Iniciar Tarefa
+                        <TooltipArrow icon="in_progress" />
                       </TooltipContent>
                     </TooltipPortal>
                   </TooltipRoot>
                 </TooltipProvider>
               )}
+
               <BtnAction type="check" onClick={cardToComplete}>
                 <Check size={24} />
               </BtnAction>

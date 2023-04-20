@@ -56,6 +56,7 @@ export default function TaskListTemplate() {
       <TaskList
         subtitleStatus={'Tarefas Pendentes'}
         quantitytasks={pendingTasks.length}
+        category={'pending'}
       >
         {pendingTasks.map((card: any) => (
           <Card
@@ -74,6 +75,7 @@ export default function TaskListTemplate() {
       <TaskList
         subtitleStatus={'Tarefas em andamento'}
         quantitytasks={currentTasks.length}
+        category={'in_progress'}
       >
         {currentTasks.map((card: any) => (
           <Card
@@ -92,6 +94,7 @@ export default function TaskListTemplate() {
       <TaskList
         subtitleStatus={'Tarefas concluídas'}
         quantitytasks={completedTasks.length}
+        category={'completed'}
       >
         {completedTasks.map((card: any) => (
           <Card

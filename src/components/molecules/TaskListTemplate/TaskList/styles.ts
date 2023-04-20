@@ -10,7 +10,21 @@ export const SummaryContainerTasks = styled('div', {
 export const TasksQuantity = styled('p', {
   fontSize: 18,
   fontWeight: 'bold',
-  color: '$purple',
+  variants: {
+    category: {
+      pending: {
+        color: '$orange',
+      },
+
+      in_progress: {
+        color: '$blue',
+      },
+
+      completed: {
+        color: '$green',
+      },
+    },
+  },
 })
 
 export const ContainerTasks = styled('div', {

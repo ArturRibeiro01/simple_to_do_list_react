@@ -15,18 +15,20 @@ interface TaskListProps {
     | 'tarefas Canceladas'
   quantitytasks: number
   children: ReactNode
+  category: 'pending' | 'in_progress' | 'completed'
 }
 
 export default function TaskList({
   subtitleStatus,
   children,
   quantitytasks,
+  category,
 }: TaskListProps) {
   return (
     <>
       <SummaryContainerTasks>
         <Subtitle status={subtitleStatus} />
-        <TasksQuantity>{quantitytasks || 0}</TasksQuantity>
+        <TasksQuantity category={category}>{quantitytasks || 0}</TasksQuantity>
       </SummaryContainerTasks>
 
       <ContainerTasks>{children}</ContainerTasks>

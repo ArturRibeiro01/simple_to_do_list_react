@@ -28,13 +28,13 @@ const slideLeftAndFade = keyframes({
 
 export const TooltipContent = styled(Tooltip.Content, {
   borderRadius: 4,
-  padding: '10px 15px',
-  fontSize: 15,
+  padding: '8px 10px',
+  fontSize: 11,
   lineHeight: 1,
-  color: 'red',
   backgroundColor: 'white',
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+  border: '1px solid',
+  fontWeight: 'bold',
+
   userSelect: 'none',
   animationDuration: '400ms',
   animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
@@ -45,8 +45,55 @@ export const TooltipContent = styled(Tooltip.Content, {
     '&[data-side="bottom"]': { animationName: slideUpAndFade },
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
+
+  variants: {
+    icon: {
+      edit: {
+        backgroundColor: '$purple',
+        borderColor: '$white',
+        color: '$white',
+      },
+
+      pending: {
+        backgroundColor: '$orange-light',
+        borderColor: '$orange',
+      },
+
+      in_progress: {
+        backgroundColor: '$blue',
+        borderColor: '$white',
+        color: '$white',
+      },
+
+      completed: {
+        backgroundColor: '$green-light',
+        borderColor: '$green',
+      },
+    },
+  },
 })
 
 export const TooltipArrow = styled(Tooltip.Arrow, {
   fill: 'white',
+
+  variants: {
+    icon: {
+      edit: {
+        fill: '$purple',
+      },
+      pending: {
+        backgroundColor: '$orange-light',
+        borderColor: '$orange',
+      },
+
+      in_progress: {
+        fill: '$blue',
+      },
+
+      completed: {
+        backgroundColor: '$green-light',
+        borderColor: '$green',
+      },
+    },
+  },
 })
