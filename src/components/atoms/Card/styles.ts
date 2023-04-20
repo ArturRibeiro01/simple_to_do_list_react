@@ -1,13 +1,13 @@
 import { Collapsible } from '@radix-ui/react-collapsible'
 import { styled } from '@stitches/react'
 
-export const ContainerCard = styled(Collapsible, {
+export const ContainerCard = styled('div', {
   width: '350px',
   padding: '1rem',
   border: '1px solid',
-
-  display: 'block',
+  display: 'flex',
   justifyContent: 'space-between',
+  flexDirection: 'column',
 
   borderRadius: '8px',
   position: 'relative',
@@ -31,6 +31,8 @@ export const ContainerCard = styled(Collapsible, {
     },
   },
 })
+
+export const CollapsibleRoot = styled(Collapsible, {})
 
 export const CardHeader = styled('div', {
   display: 'flex',
@@ -78,8 +80,6 @@ export const CardFooter = styled('p', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  position: 'relative',
-  bottom: 0,
 })
 
 export const BtnStatus = styled('button', {

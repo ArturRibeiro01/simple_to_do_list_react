@@ -9,6 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CollapsibleRoot,
   ContainerCard,
 } from './styles'
 import { CaretDown, CaretUp, Check, HourglassHigh, Trash } from 'phosphor-react'
@@ -55,13 +56,8 @@ export default function Card({
   }
 
   return (
-    <>
-      <ContainerCard
-        className="CollapsibleRoot"
-        open={open}
-        onOpenChange={setOpen}
-        status={status}
-      >
+    <ContainerCard status={status}>
+      <CollapsibleRoot open={open} onOpenChange={setOpen}>
         <CardHeader>
           <span>{dateFormatter.format(new Date(createdDate))}</span>
 
@@ -77,45 +73,44 @@ export default function Card({
         <Collapsible.Content>
           <CardContent>{task}</CardContent>
         </Collapsible.Content>
+      </CollapsibleRoot>
+      <CardFooter>
+        <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
 
-        <CardFooter>
-          <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
+        {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
 
-          {status !== 'completed' ? <EditTaskDialog idCard={id} /> : null}
-
-          <ActionContainer>
-            {status !== 'completed' ? (
-              <>
-                {status !== 'in_progress' && (
-                  <TooltipProvider>
-                    <TooltipRoot>
-                      <TooltipTrigger asChild>
-                        <BtnAction type="in_progress">
-                          <HourglassHigh size={24} onClick={cardToProgress} />
-                        </BtnAction>
-                      </TooltipTrigger>
-                      <TooltipPortal>
-                        <TooltipContent sideOffset={5}>
-                          Add to library
-                          <TooltipArrow />
-                        </TooltipContent>
-                      </TooltipPortal>
-                    </TooltipRoot>
-                  </TooltipProvider>
-                )}
-                <BtnAction type="check" onClick={cardToComplete}>
-                  <Check size={24} />
-                </BtnAction>
-              </>
-            ) : null}
-            {status !== 'pending' ? (
-              <BtnAction type="trash" onClick={deletetask}>
-                <Trash size={24} />
+        <ActionContainer>
+          {status !== 'completed' ? (
+            <>
+              {status !== 'in_progress' && (
+                <TooltipProvider>
+                  <TooltipRoot>
+                    <TooltipTrigger asChild>
+                      <BtnAction type="in_progress">
+                        <HourglassHigh size={24} onClick={cardToProgress} />
+                      </BtnAction>
+                    </TooltipTrigger>
+                    <TooltipPortal>
+                      <TooltipContent sideOffset={5}>
+                        Add to library
+                        <TooltipArrow />
+                      </TooltipContent>
+                    </TooltipPortal>
+                  </TooltipRoot>
+                </TooltipProvider>
+              )}
+              <BtnAction type="check" onClick={cardToComplete}>
+                <Check size={24} />
               </BtnAction>
-            ) : null}
-          </ActionContainer>
-        </CardFooter>
-      </ContainerCard>
-    </>
+            </>
+          ) : null}
+          {status !== 'pending' ? (
+            <BtnAction type="trash" onClick={deletetask}>
+              <Trash size={24} />
+            </BtnAction>
+          ) : null}
+        </ActionContainer>
+      </CardFooter>
+    </ContainerCard>
   )
 }
