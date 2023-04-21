@@ -1,9 +1,9 @@
 {
   "tasks": [
     {
-      "status": "in_progress",
-      "content": "Olá essa é uma nova tarefa",
-      "createdAt": "2023-04-21T02:17:31.656Z",
+      "content": "Nova tarefa",
+      "status": "pending",
+      "createdAt": "2023-04-21T02:30:54.167Z",
       "id": 1
     }
   ]

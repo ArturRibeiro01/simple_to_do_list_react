@@ -19,7 +19,7 @@ export const FilterInput = styled('div', {
     width: '100%',
     maxWidth: '300px',
     padding: '0.4rem',
-    paddingLeft: '2rem',
+    paddingLeft: '1rem',
     background: 'transparent',
     borderRadius: 8,
 
@@ -35,4 +35,5 @@ export const FilterInput = styled('div', {
 export const TextAlert = styled('p', {
   color: '$purple',
   marginTop: '0.5rem',
+  textAlign: 'center',
 })
