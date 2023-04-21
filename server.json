@@ -1,70 +1,10 @@
 {
   "tasks": [
     {
-      "content": "ioruewopriweop poirewioprdsada",
       "status": "in_progress",
-      "createdAt": "2023-04-19T00:50:39.055Z",
-      "id": 12
-    },
-    {
-      "status": "completed",
-      "content": "dsadasdasdasdas",
-      "createdAt": "2023-04-19T01:08:47.163Z",
-      "id": 13
-    },
-    {
-      "status": "completed",
-      "content": "Novas configurações de teste\n",
-      "createdAt": "2023-04-19T17:43:55.143Z",
-      "id": 15
-    },
-    {
-      "status": "completed",
-      "content": "Criar task\n",
-      "createdAt": "2023-04-19T17:54:19.153Z",
-      "id": 16
-    },
-    {
-      "status": "in_progress",
-      "content": "dsadsadas",
-      "createdAt": "2023-04-19T21:57:28.505Z",
-      "id": 17
-    },
-    {
-      "status": "in_progress",
-      "content": "dsa;ldsa[ds k[spaooe[wpr[ewre [pl;'fd,s. mkoep[rw p[p[orew,; kkl;klfds fps[d][fp]ds p[]pf[ds[pdsa[]p ",
-      "createdAt": "2023-04-20T05:14:13.791Z",
-      "id": 19
-    },
-    {
-      "status": "in_progress",
-      "content": "Nova task Criada com sucessokjjkoijunhbghnjmiko\n",
-      "createdAt": "2023-04-20T15:27:02.211Z",
-      "id": 20
-    },
-    {
-      "status": "in_progress",
-      "content": "tarefa editada com sucesso",
-      "createdAt": "2023-04-20T20:17:46.105Z",
-      "id": 22
-    },
-    {
-      "status": "in_progress",
-      "content": "Nova Tarefa",
-      "createdAt": "2023-04-20T23:48:25.451Z",
-      "id": 23
-    },
-    {
-      "status": "in_progress",
-      "content": "Nova tarefa 4",
-      "createdAt": "2023-04-20T23:48:36.668Z",
-      "id": 24
-    },
-    {
-      "content": "As tarefas estão aqui Alteradas",
-      "status": "pending",
-      "createdAt": "2023-04-20T23:55:05.085Z",
-      "id": 25
+      "content": "Olá essa é uma nova tarefa",
+      "createdAt": "2023-04-21T02:17:31.656Z",
+      "id": 1
     }
   ]
 }

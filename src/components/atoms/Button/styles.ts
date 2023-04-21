@@ -20,6 +20,7 @@ export const DialogTriggerButton = styled('button', {
   padding: '0.5rem 2rem',
   border: 0,
   borderRadius: 10,
+  margin: '0 auto',
 
   '&:hover': {
     background: darken(0.1, '#884CB2'),

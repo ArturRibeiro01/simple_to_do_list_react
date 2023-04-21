@@ -40,5 +40,11 @@ export const {
       md: '1.125rem', // 18px
       '2xl': '2.25rem', // 36px
     },
+
+    media: {
+      bp1: '(max-width: 640px)',
+      bp2: '(max-width: 768px)',
+      bp3: '(min-width: 1024px)',
+    },
   },
 })

@@ -70,19 +70,21 @@ export default function TaskListTemplate() {
 
   return (
     <TemplateContainer>
-      <FilterContainer>
-        <FilterInput>
-          <MagnifyingGlass size={20} />
-          <input
-            type="text"
-            onChange={(event) => setFilterText(event.target.value)}
-          />
-        </FilterInput>
+      {tasks.length !== 0 ? (
+        <FilterContainer>
+          <FilterInput>
+            <MagnifyingGlass size={26} />
+            <input
+              type="text"
+              onChange={(event) => setFilterText(event.target.value)}
+            />
+          </FilterInput>
 
-        {filterText !== '' && newArray.length === 0 ? (
-          <TextAlert>Não Foram encontrados resultados</TextAlert>
-        ) : null}
-      </FilterContainer>
+          {filterText !== '' && newArray.length === 0 ? (
+            <TextAlert>Não Foram encontrados resultados</TextAlert>
+          ) : null}
+        </FilterContainer>
+      ) : null}
 
       {newArray.length !== 0 && filterText !== '' ? (
         <>

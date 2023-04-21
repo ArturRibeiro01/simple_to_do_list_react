@@ -37,7 +37,7 @@ export default function NewTaskButton() {
       <DialogTrigger asChild>
         <DialogTriggerButton>
           <PlusCircle size={18} />
-          Nova tarefa
+          Criar nova tarefa
         </DialogTriggerButton>
       </DialogTrigger>
 

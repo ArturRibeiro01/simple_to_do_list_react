@@ -60,7 +60,9 @@ export default function Card({
     <ContainerCard status={status}>
       <CollapsibleRoot open={open} onOpenChange={setOpen}>
         <CardHeader>
-          <span>{dateFormatter.format(new Date(createdDate))}</span>
+          <span>
+            Criado em : &nbsp; {dateFormatter.format(new Date(createdDate))}
+          </span>
 
           <Collapsible.Trigger asChild>
             <button>
@@ -132,16 +134,24 @@ export default function Card({
                   </TooltipPortal>
                 </TooltipRoot>
               </TooltipProvider>
-
-              {/* <BtnAction type="check" onClick={cardToComplete}>
-                <Check size={24} />
-              </BtnAction> */}
             </>
           ) : null}
           {status !== 'pending' ? (
-            <BtnAction type="trash" onClick={deletetask}>
-              <Trash size={24} />
-            </BtnAction>
+            <TooltipProvider>
+              <TooltipRoot>
+                <TooltipTrigger asChild>
+                  <BtnAction type="trash" onClick={deletetask}>
+                    <Trash size={24} />
+                  </BtnAction>
+                </TooltipTrigger>
+                <TooltipPortal>
+                  <TooltipContent sideOffset={5} icon="trash">
+                    Deletar Tarefa
+                    <TooltipArrow icon="trash" />
+                  </TooltipContent>
+                </TooltipPortal>
+              </TooltipRoot>
+            </TooltipProvider>
           ) : null}
         </ActionContainer>
       </CardFooter>

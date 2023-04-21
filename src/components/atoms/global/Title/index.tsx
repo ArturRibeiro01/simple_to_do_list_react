@@ -9,12 +9,10 @@ export default function Title({ quantity }: TitleQtdProps) {
     <TitleContainer>
       {quantity > 0 ? (
         <TitleContent>
-          Você tem<TitleQtd>{quantity || 0}</TitleQtd> tarefas Criadas
+          Tarefas: <TitleQtd>{quantity || 0}</TitleQtd>
         </TitleContent>
       ) : (
-        <TitleContent>
-          Você ainda<TitleQtd> não possui</TitleQtd> nenhuma tarefa
-        </TitleContent>
+        <TitleContent>Crie uma nova tarefa</TitleContent>
       )}
     </TitleContainer>
   )

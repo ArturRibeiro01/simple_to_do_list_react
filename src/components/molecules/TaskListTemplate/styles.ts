@@ -5,14 +5,15 @@ export const TemplateContainer = styled('div', {
 })
 
 export const FilterContainer = styled('div', {
-  marginBottom: '4rem',
+  marginBottom: '4px',
 })
 
 export const FilterInput = styled('div', {
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
   gap: '0.5rem',
-  position: 'relative',
+  marginBottom: '4rem',
 
   input: {
     width: '100%',
@@ -21,12 +22,13 @@ export const FilterInput = styled('div', {
     paddingLeft: '2rem',
     background: 'transparent',
     borderRadius: 8,
+
+    borderColor: '$purple',
   },
 
   svg: {
-    position: 'absolute',
-    left: '0.5rem',
     color: '$purple',
+    fontWeight: 'bold',
   },
 })
 

@@ -78,6 +78,12 @@ export const TooltipContent = styled(Tooltip.Content, {
         borderColor: '$white',
         color: '$white',
       },
+
+      trash: {
+        backgroundColor: '$red',
+        borderColor: '$white',
+        color: '$white',
+      },
     },
   },
 })
@@ -101,6 +107,10 @@ export const TooltipArrow = styled(Tooltip.Arrow, {
 
       check: {
         fill: '$green',
+      },
+
+      trash: {
+        fill: '$red',
       },
     },
   },
