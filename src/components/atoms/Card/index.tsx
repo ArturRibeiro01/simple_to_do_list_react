@@ -1,49 +1,159 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useState } from 'react'
+import { dateFormatter } from '../../../utils/formatter'
 import {
+  ActionContainer,
+  BtnAction,
+  BtnStatus,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
+  CollapsibleRoot,
   ContainerCard,
 } from './styles'
-import { CaretDown, CaretUp } from 'phosphor-react'
+import { CaretDown, CaretUp, Check, HourglassHigh, Trash } from 'phosphor-react'
+import EditTaskDialog from '../../molecules/EditTaskDialog'
+import {
+  DivNull,
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from './tooltipStyles'
 
-export default function Card() {
-  const [open, setOpen] = useState(false)
+interface CardProps {
+  id: number
+  createdDate: any
+  task: string
+  status: 'pending' | 'in_progress' | 'completed'
+  deletetask: any
+  cardToProgress: any
+  cardToComplete: () => void
+}
+
+export default function Card({
+  id,
+  createdDate,
+  task,
+  status,
+  deletetask,
+  cardToProgress,
+  cardToComplete,
+}: CardProps) {
+  const [open, setOpen] = useState(true)
+
+  function textStatus(param: string) {
+    switch (param) {
+      case 'pending':
+        return 'Tarefa Pendente'
+      case 'in_progress':
+        return 'Tarefa em andamento'
+      case 'completed':
+        return 'Tarefa Finalizada'
+    }
+  }
 
   return (
-    <ContainerCard
-      className="CollapsibleRoot"
-      open={open}
-      onOpenChange={setOpen}
-    >
-      <CardHeader>
-        <span>data e hora da task</span>
-        <Collapsible.Trigger asChild>
-          <button>
-            {open ? <CaretUp size={20} /> : <CaretDown size={20} />}
-          </button>
-        </Collapsible.Trigger>
-      </CardHeader>
+    <ContainerCard status={status}>
+      <CollapsibleRoot open={open} onOpenChange={setOpen}>
+        <CardHeader>
+          <span>
+            Criado em : &nbsp; {dateFormatter.format(new Date(createdDate))}
+          </span>
 
-      <CardTitle>Hoje é um novo dia de um novo tempo que começou </CardTitle>
+          <Collapsible.Trigger asChild>
+            <button>
+              {open ? <CaretUp size={20} /> : <CaretDown size={20} />}
+            </button>
+          </Collapsible.Trigger>
+        </CardHeader>
 
-      <Collapsible.Content>
-        <CardContent>
-          Hoje é um novo dia de um novo tempo que começou Hoje a festa é sua,
-          hoje a festa é nossa é de quem quiser, quem vier
-        </CardContent>
-      </Collapsible.Content>
+        <CardTitle status={status}>{task}</CardTitle>
 
+        <Collapsible.Content>
+          <CardContent>{task}</CardContent>
+        </Collapsible.Content>
+      </CollapsibleRoot>
       <CardFooter>
-        <div>btn Status</div>
-        <div>btn edit</div>
-        <div>
-          <div>btn andamento</div>
-          <div>btn finalizar</div>
-          <div>btn deletar</div>
-        </div>
+        <BtnStatus status={status}>{textStatus(status)}</BtnStatus>
+
+        {status !== 'completed' ? (
+          <TooltipProvider>
+            <TooltipRoot>
+              <TooltipTrigger asChild>
+                <DivNull>
+                  <EditTaskDialog idCard={id} />
+                </DivNull>
+              </TooltipTrigger>
+              <TooltipPortal>
+                <TooltipContent sideOffset={5} icon="edit">
+                  Editar texto da Tarefa
+                  <TooltipArrow icon="edit" />
+                </TooltipContent>
+              </TooltipPortal>
+            </TooltipRoot>
+          </TooltipProvider>
+        ) : null}
+
+        <ActionContainer>
+          {status !== 'completed' ? (
+            <>
+              {status !== 'in_progress' && (
+                <TooltipProvider>
+                  <TooltipRoot>
+                    <TooltipTrigger asChild>
+                      <BtnAction type="in_progress">
+                        <HourglassHigh size={24} onClick={cardToProgress} />
+                      </BtnAction>
+                    </TooltipTrigger>
+                    <TooltipPortal>
+                      <TooltipContent sideOffset={5} icon="in_progress">
+                        Iniciar Tarefa
+                        <TooltipArrow icon="in_progress" />
+                      </TooltipContent>
+                    </TooltipPortal>
+                  </TooltipRoot>
+                </TooltipProvider>
+              )}
+
+              <TooltipProvider>
+                <TooltipRoot>
+                  <TooltipTrigger asChild>
+                    <BtnAction type="check" onClick={cardToComplete}>
+                      <Check size={24} />
+                    </BtnAction>
+                  </TooltipTrigger>
+                  <TooltipPortal>
+                    <TooltipContent sideOffset={5} icon="check">
+                      Concluir Tarefa
+                      <TooltipArrow icon="check" />
+                    </TooltipContent>
+                  </TooltipPortal>
+                </TooltipRoot>
+              </TooltipProvider>
+            </>
+          ) : null}
+          {status !== 'pending' ? (
+            <TooltipProvider>
+              <TooltipRoot>
+                <TooltipTrigger asChild>
+                  <BtnAction type="trash" onClick={deletetask}>
+                    <Trash size={24} />
+                  </BtnAction>
+                </TooltipTrigger>
+                <TooltipPortal>
+                  <TooltipContent sideOffset={5} icon="trash">
+                    Deletar Tarefa
+                    <TooltipArrow icon="trash" />
+                  </TooltipContent>
+                </TooltipPortal>
+              </TooltipRoot>
+            </TooltipProvider>
+          ) : null}
+        </ActionContainer>
       </CardFooter>
     </ContainerCard>
   )

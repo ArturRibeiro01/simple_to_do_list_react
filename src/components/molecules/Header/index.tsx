@@ -15,8 +15,6 @@ export default function Header() {
         <Title quantity={tasks.length} />
         <NewTaskButton />
       </TitleAndModal>
-
-      <div>2</div>
     </HeaderContainer>
   )
 }

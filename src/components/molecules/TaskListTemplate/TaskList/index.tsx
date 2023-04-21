@@ -1,33 +1,40 @@
-import { ContainerTasks } from './styles'
+import { ReactNode } from 'react'
+import {
+  ContainerTasks,
+  Separator,
+  SummaryContainerTasks,
+  TasksQuantity,
+} from './styles'
 import Subtitle from '../../../atoms/global/Subtitle'
-import Card from '../../../atoms/Card'
 
 interface TaskListProps {
   subtitleStatus:
     | 'Tarefas Pendentes'
     | 'Tarefas em andamento'
     | 'Tarefas concluídas'
+    | 'Tarefas Canceladas'
+    | 'Tarefas Filtradas'
+  quantitytasks: number
+  children: ReactNode
+  category: 'pending' | 'in_progress' | 'completed'
 }
 
-export default function TaskList({ subtitleStatus }: TaskListProps) {
+export default function TaskList({
+  subtitleStatus,
+  children,
+  quantitytasks,
+  category,
+}: TaskListProps) {
   return (
     <>
-      <Subtitle status={subtitleStatus} />
-      <ContainerTasks>
-        <Card />
-        <div>
-          Lorem ipsum dolo vero aliquam quidem tio aperiam odit ducimus quidem,
-          quasi porro nihil.
-        </div>
-        <div>Lorem ipsum dolo ve quidem, quasi porro nihil.</div>
-        <div>
-          Lorem ipsum dolo ve quidem, quasi porro nihildsdadsdsads adasddad
-          adsadasdas dasdsadasdas dasdada.
-        </div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-      </ContainerTasks>
+      <SummaryContainerTasks>
+        <Subtitle status={subtitleStatus} />
+        <TasksQuantity category={category}>{quantitytasks || 0}</TasksQuantity>
+      </SummaryContainerTasks>
+
+      <ContainerTasks>{children}</ContainerTasks>
+
+      <Separator />
     </>
   )
 }

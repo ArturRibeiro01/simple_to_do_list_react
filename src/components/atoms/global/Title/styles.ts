@@ -6,6 +6,9 @@ export const TitleContainer = styled('h2', {
   fontSize: '$2xl',
   fontWeight: 'bold',
   letterSpacing: 0,
+  margin: '0 auto',
+  textAlign: 'center',
+  marginBottom: '1rem',
 })
 
 export const TitleContent = styled(TitleContainer, {
