@@ -88,7 +88,7 @@ export default function TaskListTemplate() {
         <>
           <TaskList
             subtitleStatus={'Tarefas Filtradas'}
-            quantitytasks={pendingTasks.length}
+            quantitytasks={newArray.length}
             category={'pending'}
           >
             {newArray.map((card: any) => (
@@ -98,73 +98,76 @@ export default function TaskListTemplate() {
                 createdDate={card.createdAt}
                 task={card.content}
                 status={card.status}
-                deletetask={() => handleDeleteTask(card)}
+                deletetask={() => handleDeleteTask(card.id)}
                 cardToProgress={() => handleTaskToProgress(card)}
                 cardToComplete={() => handleTaskToComplete(card)}
               />
             ))}
           </TaskList>
         </>
-      ) : (
-        <>
-          <TaskList
-            subtitleStatus={'Tarefas Pendentes'}
-            quantitytasks={pendingTasks.length}
-            category={'pending'}
-          >
-            {pendingTasks.map((card: any) => (
-              <Card
-                key={card.id}
-                id={card.id}
-                createdDate={card.createdAt}
-                task={card.content}
-                status={card.status}
-                deletetask={() => handleDeleteTask(card)}
-                cardToProgress={() => handleTaskToProgress(card)}
-                cardToComplete={() => handleTaskToComplete(card)}
-              />
-            ))}
-          </TaskList>
+      ) : null}
 
-          <TaskList
-            subtitleStatus={'Tarefas em andamento'}
-            quantitytasks={currentTasks.length}
-            category={'in_progress'}
-          >
-            {currentTasks.map((card: any) => (
-              <Card
-                id={card.id}
-                key={card.id}
-                createdDate={card.createdAt}
-                task={card.content}
-                deletetask={() => handleDeleteTask(card.id)}
-                status={card.status}
-                cardToProgress={() => handleTaskToProgress(card)}
-                cardToComplete={() => handleTaskToComplete(card)}
-              />
-            ))}
-          </TaskList>
+      {newArray.length === 0 ||
+        (filterText === '' && (
+          <>
+            <TaskList
+              subtitleStatus={'Tarefas Pendentes'}
+              quantitytasks={pendingTasks.length}
+              category={'pending'}
+            >
+              {pendingTasks.map((card: any) => (
+                <Card
+                  key={card.id}
+                  id={card.id}
+                  createdDate={card.createdAt}
+                  task={card.content}
+                  status={card.status}
+                  deletetask={() => handleDeleteTask(card.id)}
+                  cardToProgress={() => handleTaskToProgress(card)}
+                  cardToComplete={() => handleTaskToComplete(card)}
+                />
+              ))}
+            </TaskList>
 
-          <TaskList
-            subtitleStatus={'Tarefas concluídas'}
-            quantitytasks={completedTasks.length}
-            category={'completed'}
-          >
-            {completedTasks.map((card: any) => (
-              <Card
-                id={card.id}
-                key={card.id}
-                createdDate={card.createdAt}
-                task={card.content}
-                status={card.status}
-                deletetask={() => handleDeleteTask(card.id)}
-                cardToProgress={() => handleTaskToProgress(card.id)}
-                cardToComplete={() => handleTaskToComplete(card)}
-              />
-            ))}
-          </TaskList>
-        </>
-      )}
+            <TaskList
+              subtitleStatus={'Tarefas em andamento'}
+              quantitytasks={currentTasks.length}
+              category={'in_progress'}
+            >
+              {currentTasks.map((card: any) => (
+                <Card
+                  id={card.id}
+                  key={card.id}
+                  createdDate={card.createdAt}
+                  task={card.content}
+                  deletetask={() => handleDeleteTask(card.id)}
+                  status={card.status}
+                  cardToProgress={() => handleTaskToProgress(card)}
+                  cardToComplete={() => handleTaskToComplete(card)}
+                />
+              ))}
+            </TaskList>
+
+            <TaskList
+              subtitleStatus={'Tarefas concluídas'}
+              quantitytasks={completedTasks.length}
+              category={'completed'}
+            >
+              {completedTasks.map((card: any) => (
+                <Card
+                  id={card.id}
+                  key={card.id}
+                  createdDate={card.createdAt}
+                  task={card.content}
+                  status={card.status}
+                  deletetask={() => handleDeleteTask(card.id)}
+                  cardToProgress={() => handleTaskToProgress(card.id)}
+                  cardToComplete={() => handleTaskToComplete(card)}
+                />
+              ))}
+            </TaskList>
+          </>
+        ))}
     </TemplateContainer>
   )
 }
